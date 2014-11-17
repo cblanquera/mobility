@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <title>Openovate Boiler Plate</title>
+    
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" type="text/css" href="styles/awesome.css" />
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="styles/mobility.css" />
+    
+	<script type="text/javascript" src="scripts/jquery.js"></script>
+	<script type="text/javascript" src="scripts/doon.js"></script>
+    <script type="text/javascript" src="scripts/mobility.js"></script>
+</head>
+<body>
+	<section class="screen current">
+        <header class="head">
+            <a class="head-btn btn btn-default pull-left" data-do="go-back" data-on="click" href="#home">Back</a>
+            <a class="head-btn btn btn-default pull-right" data-do="modal-open" data-on="click" href="#modal">Open</a>
+            <h1 class="title">
+                <a data-do="popover-open" data-on="click" href="#popover">Demo <i class="fa fa-caret-down"></i></a>
+            </h1>
+        </header>
+        
+        <section class="body with-head with-foot">
+            <h4 class="pad upper">Mobility UI</h4>
+            <div class="focus">
+            	<p>Mobility is a super light weight HTML, CSS, and JS framework
+                built on top of Bootstrap for developing mobile applications.</p>
+                
+            </div>
+            
+            <nav class="nav-list">
+                <a href="#">Download <i class="fa fa-external-link"></i></a>
+                <a href="#">Github <i class="fa fa-external-link"></i></a>
+            </nav>
+            
+            <h4 class="pad upper">Demo</h4>
+            <nav class="nav-list">
+                <a data-do="go-forward" data-on="click" href="#typography">Typography <i class="fa fa-plus"></i></a>
+                <a data-do="go-forward" data-on="click" href="#tabs">Tabs <i class="fa fa-edit"></i></a>
+                <a data-do="go-forward" data-on="click" href="#fields">Fields <i class="fa fa-chevron-right"></i><span class="badge">42</span></a>
+                <a data-do="go-forward" data-on="click" href="#list">List <i class="fa fa-chevron-right"></i></a>
+            </nav>
+        </section>
+    </section>
+    
+    <footer class="foot">
+        <nav class="foot-nav" data-do="foot-nav">
+            <a class="foot-nav-item" href="#home">
+                <i class="foot-nav-icon fa fa-home"></i>
+                <span class="foot-nav-label">Home</span>
+            </a>
+            <a class="foot-nav-item" data-do="modal-open" data-on="click" href="#profile">
+                <i class="foot-nav-icon fa fa-user"></i>
+                <span class="foot-nav-label">Profile</span>
+            </a>
+            <a class="foot-nav-item" data-do="modal-open" data-on="click" href="#favorites">
+                <i class="foot-nav-icon fa fa-star"></i>
+                <span class="foot-nav-label">Favorites</span>
+            </a>
+            <a class="foot-nav-item" data-do="modal-open" data-on="click" href="#modal">
+                <i class="foot-nav-icon fa fa-search"></i>
+                <span class="foot-nav-label">Search</span>
+            </a>
+            <a class="foot-nav-item" data-do="modal-open" data-on="click" href="#modal">
+                <i class="foot-nav-icon fa fa-cog"></i>
+                <span class="foot-nav-label">Settings</span>
+            </a>
+        </nav>
+    </footer>
+    
+    <div id="modal" class="modal hide">
+        <header class="head">
+            <a class="head-link pull-right" href="#modal" data-do="modal-close" data-on="click">
+                <i class="fa fa-times"></i>
+            </a>
+            <h1 class="title">Modal</h1>
+        </header>
+    
+        <section class="body with-head">
+            <p class="pad">The contents of my modal go here. Lorem ipsum dolor 
+            sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut 
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+            ullamco laboris nisi ut.</p>
+        </section>
+    </div>
+    
+    <div id="favorites" class="modal hide">
+        <header class="head">
+            <a class="head-link pull-right" href="#favorites" data-do="modal-close" data-on="click">
+                <i class="fa fa-times"></i>
+            </a>
+            <h1 class="title">Favorites</h1>
+        </header>
+    
+        <section class="body with-head">
+            <nav class="nav-list">
+                <a data-do="go-forward" data-on="click" href="#typography">Typography <i class="fa fa-plus"></i></a>
+                <a data-do="go-forward" data-on="click" href="#tabs">Tabs <i class="fa fa-edit"></i></a>
+                <a data-do="go-forward" data-on="click" href="#fields">Fields <i class="fa fa-chevron-right"></i><span class="badge">42</span></a>
+                <a data-do="go-forward" data-on="click" href="#list">List <i class="fa fa-chevron-right"></i></a>
+            </nav>
+        </section>
+    </div>
+    
+    <div id="profile" class="modal hide">
+        <header class="head">
+            <a class="head-link pull-right" href="#profile" data-do="modal-close" data-on="click">
+                <i class="fa fa-times"></i>
+            </a>
+            <h1 class="title">Profile</h1>
+        </header>
+    
+        <section class="body with-head">
+            <div class="row pad">
+                <div class="col-md-1 middle">
+                    <img src="images/baby-19295_640.jpg">
+                </div>
+                <div class="col-md-11">
+                    <div class="focus">
+                        <label>Name</label>
+                        <input type="text" class="form-control" placeholder="Text input" value="Hiro Nakaturo" />
+                    </div>
+                    <div class="focus">
+                        <label>Password</label>
+                        <input type="password" class="form-control" placeholder="Enter Text" />
+                    </div>
+                    
+                    <h4 class="pad upper">Status</h4>
+                    <div class="focus focus-group" data-do="focus-input-group">
+                        <label>
+                            <span>Visible</span>
+                            <input type="radio" name="options" />
+                        </label>
+                        <label>
+                            <span>Hidden</span>
+                            <input type="radio" name="options" />
+                        </label>
+                        <label>
+                            <span>Busy</span>
+                            <input type="radio" name="options" />
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <div id="popover" class="popover hide" data-do="popover-close" data-on="click" data-target="#popover">
+        <nav class="nav-list">
+            <a data-do="go-forward" data-on="click" href="#typography">Typography</a>
+            <a data-do="go-forward" data-on="click" href="#tabs">Tabs</a>
+            <a data-do="go-forward" data-on="click" href="#fields">Fields</a>
+            <a data-do="go-forward" data-on="click" href="#list">List</a>
+        </nav>
+    </div>
+    
+    <script id="home" type="text/html">
+        <header class="head">
+            <a class="head-btn btn btn-default pull-left" data-do="go-back" data-on="click" href="#home">Back</a>
+            <a class="head-btn btn btn-default pull-right" data-do="modal-open" data-on="click" href="#modal">Open</a>
+            <h1 class="title">
+                <a data-do="popover-open" data-on="click" href="#popover">Demo <i class="fa fa-caret-down"></i></a>
+            </h1>
+        </header>
+        
+        <section class="body with-head with-foot">
+            <div class="focus">
+            	<p>Mobility is a super light weight HTML, CSS, and JS framework
+                built on top of Bootstrap for developing mobile applications.</p>
+                
+            </div>
+            
+            <nav class="nav-list">
+                <a href="#">Download <i class="fa fa-external-link"></i></a>
+                <a href="#">Github <i class="fa fa-external-link"></i></a>
+            </nav>
+            
+            <h4 class="pad upper">Demo</h4>
+            <nav class="nav-list">
+                <a data-do="go-forward" data-on="click" href="#typography">Typography <i class="fa fa-plus"></i></a>
+                <a data-do="go-forward" data-on="click" href="#tabs">Tabs <i class="fa fa-edit"></i></a>
+                <a data-do="go-forward" data-on="click" href="#fields">Fields <i class="fa fa-chevron-right"></i><span class="badge">42</span></a>
+                <a data-do="go-forward" data-on="click" href="#list">List <i class="fa fa-chevron-right"></i></a>
+            </nav>
+        </section>
+    </script>
+    
+    <script id="typography" type="text/html">
+        <header class="head">
+            <a class="head-btn btn btn-default pull-left" data-do="go-back" data-on="click" href="#home">Back</a>
+            <h1 class="title">Demo - Typography</h1>
+        </header>
+        <section class="body with-foot with-head pad">
+            <h1 class="pad">h1. Bootstrap heading <small>Secondary text</small></h1>
+            <h2 class="pad">h2. Bootstrap heading <small>Secondary text</small></h2>
+            <h3 class="pad">h3. Bootstrap heading <small>Secondary text</small></h3>
+            <h4 class="pad">h4. Bootstrap heading <small>Secondary text</small></h4>
+            <h5 class="pad">h5. Bootstrap heading <small>Secondary text</small></h5>
+            <h6 class="pad">h6. Bootstrap heading <small>Secondary text</small></h6>
+            
+            <p class="pad">Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis 
+            parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
+            
+            <p class="pad">Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec 
+            ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat 
+            porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.</p>
+            
+            <p class="pad">Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta 
+            gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget 
+            lacinia odio sem nec elit.</p>
+        </section>
+    </script>
+    
+    <script id="tabs" type="text/html">
+        <header class="head">
+            <a class="head-btn btn btn-default pull-left" data-do="go-back" data-on="click" href="#home">Back</a>
+            <h1 class="title">Demo - Tabs</h1>
+        </header>
+        <section class="body with-head with-foot">
+            <!-- Nav tabs -->
+            <nav class="tabs">
+                <a class="active" data-do="tab-switch" data-on="click" href="#tab1">Home</a>
+                <a data-do="tab-switch" data-on="click" href="#tab2">Profile</a>
+                <a data-do="tab-switch" data-on="click" href="#tab3">Messages</a>
+                <a data-do="tab-switch" data-on="click" href="#tab4">Settings</a>
+            </nav>
+            
+            <div id="tab1">
+                <div class="focus focus-group">
+                    <div class="row">
+                        <div class="col-xs-3 middle">
+                            <img title="Imagine Dragons" src="music/Imagine Dragons.jpg" />
+                        </div>
+                        <div class="col-xs-9">
+                            <h3>Imagine Dragons</h3>
+                            <em class="text-muted">Radioactive</em>
+                            <p>Maecenas sed diam eget risus varius blandit sit amet 
+                            non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non 
+                            commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+                        </div>
+                    </div>
+                </div>
+                <nav class="nav-list">
+                    <span>Download It <i class="fa fa-chevron-right"></i></span>
+                    <span>Buy It <i class="fa fa-chevron-right"></i></span>
+                    <span>Share It <i class="fa fa-chevron-right"></i></span>
+                    <span>Listen To It <i class="fa fa-chevron-right"></i></span>
+                </nav>
+            </div>
+            
+            <div id="tab2" class="focus hide">Nullam quis risus eget urna mollis ornare vel 
+            eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur 
+            ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</div>
+            
+            <div id="tab3" class="focus hide">Cum sociis natoque penatibus et magnis dis parturient 
+            montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. 
+            Duis mollis, est non commodo luctus, nisi erat  porttitor ligula, eget lacinia odio 
+            sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.</div>
+            
+            <div id="tab4" class="focus hide">Maecenas sed diam eget risus varius blandit sit amet 
+            non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non 
+            commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</div>
+        </section>
+    </script>
+    
+    <script id="fields" type="text/html">
+        <header class="head">
+            <a class="head-btn btn btn-default pull-left" data-do="go-back" data-on="click" href="#home">Back</a>
+            <h1 class="title">Demo - Fields</h1>
+        </header>
+        <section class="body with-head with-foot">
+            <div class="focus">
+                <label>Input</label>
+                <input type="text" class="form-control" placeholder="Text input" />
+            </div>
+            <div class="focus">
+                <label>Password</label>
+                <input type="password" class="form-control" placeholder="Enter Text" />
+            </div>
+            
+            <div class="focus">
+                <label>File</label>
+                <input type="file" class="form-control" />
+            </div>
+            
+            <div class="focus">
+                <label>Date</label>
+                <input type="date" class="form-control" placeholder="Date" />
+            </div>
+            
+            <div class="focus">
+                <label>Range</label>
+                <input type="range" min="5" max="20" step="5" class="form-control" />
+            </div>
+            
+            <div class="focus">
+                <label>Number</label>
+                <input type="number" min="5" max="20" step="5" class="form-control" />
+            </div>
+            
+            <div class="focus">
+                <label class="top">Select</label>
+                <select class="form-control">
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+                    <option>Option 3</option>
+                    <option>Option 4</option>
+                    <option>Option 5</option>
+                </select>
+            </div>
+            
+            <div class="focus">
+                <label class="top">Textarea</label>
+                <textarea class="form-control" rows="3" placeholder="Enter Text"></textarea>
+            </div>
+            
+            <h4 class="pad upper">Radio</h4>
+            <div class="focus focus-group" data-do="focus-input-group">
+                <label>
+                    <span>Choice 1</span>
+                    <input type="radio" name="options" />
+                </label>
+                <label>
+                    <span>Choice 2</span>
+                    <input type="radio" name="options" />
+                </label>
+                <label>
+                    <span>Choice 3</span>
+                    <input type="radio" name="options" />
+                </label>
+                <label>
+                    <span>Choice 4</span>
+                    <input type="radio" name="options" />
+                </label>
+            </div>
+            
+            <h4 class="pad upper">Checkbox</h4>
+            <div class="focus focus-group" data-do="focus-input-group">
+                <label>
+                    <span>Choice 1</span>
+                    <input type="checkbox" name="options" />
+                </label>
+                <label>
+                    <span>Choice 2</span>
+                    <input type="checkbox" name="options" />
+                </label>
+                <label>
+                    <span>Choice 3</span>
+                    <input type="checkbox" name="options" />
+                </label>
+                <label>
+                    <span>Choice 4</span>
+                    <input type="checkbox" name="options" />
+                </label>
+            </div>
+            
+            <h4 class="pad upper">Switch</h4>
+            <div class="focus focus-group" data-do="focus-input-group">
+                <label>
+                    <span>Choice 1</span>
+                    <span class="switch">
+                        <input type="checkbox" name="check" value="PH" />
+                        <span></span>
+                    </span>
+                </label>
+                <label>
+                    <span>Choice 2</span>
+                    <span class="switch switch-2">
+                        <input type="checkbox" name="check" value="PH" />
+                        <span></span>
+                    </span>
+                </label>
+                <label>
+                    <span>Choice 3</span>
+                    <span class="switch switch-3">
+                        <input type="checkbox" name="check" value="PH" />
+                        <span></span>
+                    </span>
+                </label>
+                <label>
+                    <span>Choice 4</span>
+                    <span class="switch switch-4">
+                        <input type="checkbox" name="check" value="PH" />
+                        <span></span>
+                    </span>
+                </label>
+                <label>
+                    <span>Choice 5</span>
+                    <span class="switch switch-5">
+                        <input type="checkbox" name="check" value="PH" />
+                        <span></span>
+                    </span>
+                </label>
+                <label>
+                    <span>Choice 6</span>
+                    <span class="switch switch-6">
+                        <input type="checkbox" name="check" value="PH" />
+                        <span></span>
+                    </span>
+                </label>
+                <label>
+                    <span>Choice 7</span>
+                    <span class="switch switch-7">
+                        <input type="checkbox" name="check" value="PH" />
+                        <span></span>
+                    </span>
+                </label>
+            </div>        
+        </section>
+    </script>
+    
+    <script id="list" type="text/html">
+        <header class="head">
+            <a class="head-btn btn btn-default pull-left" data-do="go-back" data-on="click" href="#home">Back</a>
+            <h1 class="title">Demo - List</h1>
+        </header>
+        <section class="body with-head with-foot">
+            <h4 class="pad upper">List Example 1</h4>
+            
+            <div class="focus focus-group">
+                <div class="row">
+                    <div class="col-xs-3 middle">
+                        <img title="Imagine Dragons" src="music/Imagine Dragons.jpg" />
+                    </div>
+                    <div class="col-xs-7">
+                        <h3>Imagine Dragons</h3>
+                        <em class="text-muted">Radioactive</em>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <span class="badge">42</span>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 middle">
+                        <img title="Hurry and Harm" src="music/Hurry and Harm.jpg" />
+                    </div>
+                    <div class="col-xs-10">
+                        <h3>The Hurry and the Harm</h3>
+                        <em class="text-muted">Hurt</em>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 middle">
+                        <img title="Permanent" src="music/Permanent.jpg" />
+                    </div>
+                    <div class="col-xs-7">
+                        <h3>David Cook</h3>
+                        <em class="text-muted">Permanent</em>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <span class="label label-info">Info</span>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 middle">
+                        <img title="Kiss" src="music/Kiss.jpg" />
+                    </div>
+                    <div class="col-xs-7">
+                        <h3>Kiss</h3>
+                        <em class="text-muted">This Kiss</em>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <span class="label label-info">Info</span>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 middle">
+                        <img title="Willy Moon" src="music/Willy Moon.jpg" />
+                    </div>
+                    <div class="col-xs-7">
+                        <h3>Willy Moon</h3>
+                        <em class="text-muted">Yeah Yeah</em>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <span class="badge">42</span>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <h4 class="pad upper">List Example 2</h4>
+            
+            <nav class="nav-list">
+                <div class="row">
+                    <div class="col-xs-3 middle">
+                        <img title="Imagine Dragons" src="music/Imagine Dragons.jpg" />
+                    </div>
+                    <div class="col-xs-7">
+                        <h3>Imagine Dragons</h3>
+                        <em class="text-muted">Radioactive</em>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <span class="badge">42</span>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 middle">
+                        <img title="Hurry and Harm" src="music/Hurry and Harm.jpg" />
+                    </div>
+                    <div class="col-xs-10">
+                        <h3>The Hurry and the Harm</h3>
+                        <em class="text-muted">Hurt</em>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 middle">
+                        <img title="Permanent" src="music/Permanent.jpg" />
+                    </div>
+                    <div class="col-xs-7">
+                        <h3>David Cook</h3>
+                        <em class="text-muted">Permanent</em>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <span class="label label-info">Info</span>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 middle">
+                        <img title="Kiss" src="music/Kiss.jpg" />
+                    </div>
+                    <div class="col-xs-7">
+                        <h3>Kiss</h3>
+                        <em class="text-muted">This Kiss</em>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <span class="label label-info">Info</span>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 middle">
+                        <img title="Willy Moon" src="music/Willy Moon.jpg" />
+                    </div>
+                    <div class="col-xs-7">
+                        <h3>Willy Moon</h3>
+                        <em class="text-muted">Yeah Yeah</em>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <span class="badge">42</span>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                </div>
+            </nav>
+        </section>
+    </script>
+    
+    <script type="text/javascript">jQuery.mobility.start();</script>
+</body>
+</html>
