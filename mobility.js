@@ -70,6 +70,12 @@
 		e.preventDefault();
 		e.originalEvent.stop = true;
 		
+		if($.mobility.busy) {
+			return;
+		}
+		
+		$.mobility.busy = true;
+		
 		var trigger = getTrigger('modal-open-click', e.target);
 		var target = $(getTarget(trigger));
 		
@@ -77,6 +83,8 @@
 			target
 				.unbind('webkitTransitionEnd', slideEnd)
 				.removeClass('sliding');
+			
+			$.mobility.busy = false;
 		};
 		
 		target
@@ -94,6 +102,12 @@
 		e.preventDefault();
 		e.originalEvent.stop = true;
 		
+		if($.mobility.busy) {
+			return;
+		}
+		
+		$.mobility.busy = true;
+		
 		var trigger = getTrigger('modal-close-click', e.target);
 		var target = $(getTarget(trigger));
 		
@@ -103,6 +117,8 @@
 				.removeClass('sliding')
 				.removeClass('sliding-down')
 				.addClass('hide');
+			
+			$.mobility.busy = false;
 		};
 		
 		target[0].offsetWidth; // force reflow
@@ -183,7 +199,14 @@
 	
 	$.extend({
 		mobility: {
+			busy: false,
 			swap: function(html, effect) {
+				if($.mobility.busy) {
+					return;
+				}
+				
+				$.mobility.busy = true;
+				
 				var section = $('<section class="screen current">').html(html);
 				var current = $('section.screen.current');
 				
@@ -197,10 +220,14 @@
 						.removeClass('sliding-left');
 						
 					current.remove();
+					
+					$.mobility.busy = false;
 				};
 				
 				var fadeEnd = function () {
 					current.remove();
+					
+					$.mobility.busy = false;
 				};
 				
 				switch(effect) {
@@ -240,6 +267,7 @@
 						current
 							.addClass('sliding')
 							.addClass('sliding-right');
+							
 						break;
 					
 					case 'slide-up':
@@ -294,6 +322,8 @@
 					default:
 						section.appendTo(document.body).doon();
 						current.remove();
+						
+						$.mobility.busy = true;
 						break;
 						
 				}
