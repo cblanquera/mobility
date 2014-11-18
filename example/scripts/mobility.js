@@ -15,30 +15,28 @@
 		
 		var trigger = getTrigger('go-back-click', e.target);
 		var target = getTarget(trigger);
-		var data = { html: '' };
 		
-		if($(target).length && $(target).html()) {
-			data.html = $(target).html();
-		}
+		try {
+			if($(target).length && $(target).html()) {
+				$.mobility.swap($(target).html(), 'slide-right');
+			}
+		} catch(e) {}
 		
-		$(window).trigger('get-mobility-data', [target, data]);
-		
-		$.mobility.swap(data.html, 'slide-right');
+		$(window).trigger('mobility-request', [target, 'slide-right']);
 	}).on('go-forward-click', function(e) {
 		e.preventDefault();
 		e.originalEvent.stop = true;
 		
 		var trigger = getTrigger('go-back-click', e.target);
 		var target = getTarget(trigger);
-		var data = { html: '' };
 		
-		if($(target).length && $(target).html()) {
-			data.html = $(target).html();
-		}
+		try {
+			if($(target).length && $(target).html()) {
+				$.mobility.swap($(target).html(), 'slide-left');
+			}
+		} catch(e) {}
 		
-		$(window).trigger('get-mobility-data', [target, data]);
-		
-		$.mobility.swap(data.html, 'slide-left');
+		$(window).trigger('mobility-request', [target, 'slide-left']);
 	}).on('focus-input-group-init', function(e, trigger) {
 		trigger = $(trigger);
 		
