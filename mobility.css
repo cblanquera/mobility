@@ -22,10 +22,16 @@ a, a:active, a:hover, a:visited { color: #000000; text-decoration: none; }
 .top { vertical-align: top !important; }
 .middle { vertical-align: middle !important; }
 .bottom { vertical-align: bottom !important; }
+.center { text-align: center !important; }
 
 /* Bootstrap Fixes
 -------------------------------*/
 .row img { width: 100%; }
+form .btn {
+	display: block;
+	margin: 10px auto;
+	width: 95%;
+}
 
 /* Effects
 -------------------------------*/
@@ -196,7 +202,12 @@ a, a:active, a:hover, a:visited { color: #000000; text-decoration: none; }
 }
 
 .focus > * { display: table-cell; padding: 0 5px; vertical-align: top; width: 1%; }
-.focus > label { margin-bottom: 0; margin-right: 10px; vertical-align: middle; }
+.focus > label { 
+	margin-bottom: 0; 
+	margin-right: 10px; 
+	vertical-align: middle; 
+	white-space: nowrap; 
+}
 
 .focus input[type="text"],
 .focus input[type="password"],
