@@ -22,16 +22,10 @@ a, a:active, a:hover, a:visited { color: #000000; text-decoration: none; }
 .top { vertical-align: top !important; }
 .middle { vertical-align: middle !important; }
 .bottom { vertical-align: bottom !important; }
-.center { text-align: center !important; }
 
 /* Bootstrap Fixes
 -------------------------------*/
 .row img { width: 100%; }
-form .btn {
-	display: block;
-	margin: 10px auto;
-	width: 95%;
-}
 
 /* Effects
 -------------------------------*/
@@ -202,12 +196,7 @@ form .btn {
 }
 
 .focus > * { display: table-cell; padding: 0 5px; vertical-align: top; width: 1%; }
-.focus > label { 
-	margin-bottom: 0; 
-	margin-right: 10px; 
-	vertical-align: middle; 
-	white-space: nowrap; 
-}
+.focus > label { margin-bottom: 0; margin-right: 10px; vertical-align: middle; }
 
 .focus input[type="text"],
 .focus input[type="password"],
@@ -230,6 +219,14 @@ form .btn {
 	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 	width: 100%;
 }
+
+.focus .input-group-addon {
+	background-color: transparent;
+	border: 0;
+	border-radius: 0;
+}
+
+.focus .eve-block { width: 100%; }
 
 .focus input[type="range"] { margin-top: 5px; }
 
@@ -748,4 +745,21 @@ form .btn {
 	content: '\f00c';
 	background-color: #468fcc;
 	color: #FFF;
+}
+
+
+/* Pull To Refresh
+-------------------------------*/
+.refresh-pull {
+	font-size: 18px;
+	line-height: 50px;
+	height: 180px;
+	padding-top: 130px;
+	text-align: center;
+	width: 100%;
+}
+
+.refresh-pull > i {
+	display: inline-block;
+	margin-right: 5px;
 }

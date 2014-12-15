@@ -47,6 +47,7 @@
                 <a data-do="go-forward" data-on="click" href="#tabs">Tabs <i class="fa fa-edit"></i></a>
                 <a data-do="go-forward" data-on="click" href="#fields">Fields <i class="fa fa-chevron-right"></i><span class="badge">42</span></a>
                 <a data-do="go-forward" data-on="click" href="#list">List <i class="fa fa-chevron-right"></i></a>
+            	<a data-do="go-forward" data-on="click" href="#refresh">Refresh <i class="fa fa-chevron-right"></i></a>
             </nav>
         </section>
     </section>
@@ -159,6 +160,7 @@
             <a data-do="go-forward" data-on="click" href="#tabs">Tabs</a>
             <a data-do="go-forward" data-on="click" href="#fields">Fields</a>
             <a data-do="go-forward" data-on="click" href="#list">List</a>
+            <a data-do="go-forward" data-on="click" href="#refresh">Refresh <i class="fa fa-chevron-right"></i></a>
         </nav>
     </div>
     
@@ -189,6 +191,7 @@
                 <a data-do="go-forward" data-on="click" href="#tabs">Tabs <i class="fa fa-edit"></i></a>
                 <a data-do="go-forward" data-on="click" href="#fields">Fields <i class="fa fa-chevron-right"></i><span class="badge">42</span></a>
                 <a data-do="go-forward" data-on="click" href="#list">List <i class="fa fa-chevron-right"></i></a>
+                <a data-do="go-forward" data-on="click" href="#refresh">Refresh <i class="fa fa-chevron-right"></i></a>
             </nav>
         </section>
     </script>
@@ -579,6 +582,184 @@
         </section>
     </script>
     
-    <script type="text/javascript">jQuery.mobility.start();</script>
+    <script id="refresh" type="text/html">
+        <header class="head">
+            <a class="head-btn btn btn-default pull-left" data-do="go-back" data-on="click" href="#home">Back</a>
+            <h1 class="title">Demo - Refresh</h1>
+        </header>
+		
+        <section class="body with-head with-foot">
+            <div class="refresh-pull hide" data-do="refresh-pull"
+				data-pull="Pull down to refresh" 
+				data-release="Release to refresh" 
+				data-loading="Loading ...">
+				<i class="fa fa-arrow-up"></i>
+				<span class="message"></span>
+			</div>
+
+			<div class="focus focus-group">
+                <div class="row">
+                    <div class="col-xs-3 middle">
+                        <img title="Imagine Dragons" src="music/Imagine Dragons.jpg" />
+                    </div>
+                    <div class="col-xs-7">
+                        <h3>Imagine Dragons</h3>
+                        <em class="text-muted">Radioactive</em>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <span class="badge">42</span>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 middle">
+                        <img title="Hurry and Harm" src="music/Hurry and Harm.jpg" />
+                    </div>
+                    <div class="col-xs-10">
+                        <h3>The Hurry and the Harm</h3>
+                        <em class="text-muted">Hurt</em>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 middle">
+                        <img title="Permanent" src="music/Permanent.jpg" />
+                    </div>
+                    <div class="col-xs-7">
+                        <h3>David Cook</h3>
+                        <em class="text-muted">Permanent</em>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <span class="label label-info">Info</span>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 middle">
+                        <img title="Kiss" src="music/Kiss.jpg" />
+                    </div>
+                    <div class="col-xs-7">
+                        <h3>Kiss</h3>
+                        <em class="text-muted">This Kiss</em>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <span class="label label-info">Info</span>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 middle">
+                        <img title="Willy Moon" src="music/Willy Moon.jpg" />
+                    </div>
+                    <div class="col-xs-7">
+                        <h3>Willy Moon</h3>
+                        <em class="text-muted">Yeah Yeah</em>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <span class="badge">42</span>
+                    </div>
+                    <div class="col-xs-1 middle">
+                        <i class="fa fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </script>
+    
+    <script id="refresh-template" type="text/html">   		
+		<div class="row">
+			<div class="col-xs-3 middle">
+				<img title="Imagine Dragons" src="music/Imagine Dragons.jpg" />
+			</div>
+			<div class="col-xs-7">
+				<h3>Imagine Dragons</h3>
+				<em class="text-muted">Radioactive</em>
+			</div>
+			<div class="col-xs-1 middle">
+				<span class="badge">42</span>
+			</div>
+			<div class="col-xs-1 middle">
+				<i class="fa fa-chevron-right"></i>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3 middle">
+				<img title="Hurry and Harm" src="music/Hurry and Harm.jpg" />
+			</div>
+			<div class="col-xs-10">
+				<h3>The Hurry and the Harm</h3>
+				<em class="text-muted">Hurt</em>
+			</div>
+			<div class="col-xs-1 middle">
+				<i class="fa fa-chevron-right"></i>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3 middle">
+				<img title="Permanent" src="music/Permanent.jpg" />
+			</div>
+			<div class="col-xs-7">
+				<h3>David Cook</h3>
+				<em class="text-muted">Permanent</em>
+			</div>
+			<div class="col-xs-1 middle">
+				<span class="label label-info">Info</span>
+			</div>
+			<div class="col-xs-1 middle">
+				<i class="fa fa-chevron-right"></i>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3 middle">
+				<img title="Kiss" src="music/Kiss.jpg" />
+			</div>
+			<div class="col-xs-7">
+				<h3>Kiss</h3>
+				<em class="text-muted">This Kiss</em>
+			</div>
+			<div class="col-xs-1 middle">
+				<span class="label label-info">Info</span>
+			</div>
+			<div class="col-xs-1 middle">
+				<i class="fa fa-chevron-right"></i>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3 middle">
+				<img title="Willy Moon" src="music/Willy Moon.jpg" />
+			</div>
+			<div class="col-xs-7">
+				<h3>Willy Moon</h3>
+				<em class="text-muted">Yeah Yeah</em>
+			</div>
+			<div class="col-xs-1 middle">
+				<span class="badge">42</span>
+			</div>
+			<div class="col-xs-1 middle">
+				<i class="fa fa-chevron-right"></i>
+			</div>
+		</div>
+    </script>
+    
+    <script type="text/javascript">
+	jQuery.mobility.start();
+	
+    var i = 0;
+	
+	jQuery(window).on('mobility-refresh', function(e, target, callback) {
+		var rows = $(jQuery('#refresh-template').html());
+		setTimeout(function() {
+			callback(rows[(++i) % 4]);
+		}, 200);	
+	});
+    </script>
 </body>
 </html>
