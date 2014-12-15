@@ -149,65 +149,99 @@
 		
 		$('span.message', wizard).html(wizard.attr('data-pull'));
 		
-		var target = wizard.parent();
-		var mode = 'normal';
+		var busy = false, touching = false, last = 0, target = wizard.parent(), 
 		
-		target.scrollTop(1).scroll(function(e) {
-			if(mode === 'loading') {
-				target.scrollTop(0);
-				return;
-			}
-			
+		rotate = function(e) {
 			var scroll = target.scrollTop();
 			
-			if(scroll === 0 && mode === 'normal') {
-				wizard.removeClass('hide');
-				target.scrollTop(180);
-				mode = 'pull';	
-				return;
-			} 
-			
-			if(mode === 'pull' && scroll > 180) {
-				wizard.addClass('hide');
-				target.scrollTop(1);
-				mode = 'normal';
-				return;
-			}
-			
-			if(mode === 'pull') {
-				$('i', wizard).css('transform', 'rotate('+ (180 - scroll) +'deg)');
+			if(scroll < 181) {
+				var deg = 180 - scroll;
 				
-				if(scroll === 0) {
-					$('span.message', wizard).html(wizard.attr('data-loading'));
-					mode = 'loading';
-					wizard.animate({paddingTop: 0, height: 50}, 'fast', function() {
-						$(window).trigger('mobility-refresh', [target, function(html) {
-							if(html) {
-								wizard.next().prepend($(html).css('opacity', 0).animate({opacity: 1}));
-							}
-							
-							wizard.animate({height: 0}, 'fast', function() {
-								wizard
-									.addClass('hide')
-									.css('padding-top', '130px')
-									.css('height', '180px');
-								
-								$('span.message', wizard).html(wizard.attr('data-pull'));
-								$('i', wizard).css('transform', 'rotate(0deg)');
-								
-								setTimeout(function() {
-									mode = 'normal';
-									target.scrollTop(1);
-								}, 200);
-							});
-						}]);
-					});
+				if(deg > 180) {
+					deg = 180;
+				} else if(deg < 0) {
+					deg = 0;
 				}
-				
+				 
+				$('i', wizard).css('transform', 'rotate('+ deg +'deg)');
+			}
+		},
+		
+		release = function(e) {
+			if(target.scrollTop() != 0) {
 				return;
 			}
-		});
+			
+			if(touching) {
+				$('span.message', wizard).html(wizard.attr('data-release'));
+				$(window).one('touchend', load);
+				return;
+			}
+			
+			load();
+		},
 		
+		load = function() {
+			if(busy) {
+				return;
+			}
+			
+			$('span.message', wizard).html(wizard.attr('data-loading'));
+			
+			busy = true;
+			wizard.animate({paddingTop: 0, height: 50}, 'fast', function() {
+				$(window).trigger('mobility-refresh', [target, function(html) {
+					if(html) {
+						wizard
+						.next()
+						.prepend($(html)
+						.css('opacity', 0)
+						.animate({opacity: 1}));
+					}
+					
+					wizard
+						.css('padding-top', '130px')
+						.css('height', '180px');
+					
+					$('span.message', wizard).html(wizard.attr('data-pull'));
+					$('i', wizard).css('transform', 'rotate(0deg)');
+					
+					target.scrollTop(179);
+					setTimeout(function() {
+						target.scrollTop(180);
+					}, 5);
+					
+					busy = false;
+				}]);
+			});
+		};
+		
+		$(window).one('mobility-swap-complete', function() {
+			wizard.removeClass('hide');
+			target.scrollTop(180)
+				.on('scroll', rotate)
+				.on('scroll', release)
+				.on('touchstart', function() {
+					touching = true;
+				})
+				.on('touchend', function() {
+					touching = false;
+					
+					if($('span.message', wizard).html() === wizard.attr('data-release')) {
+						return;
+					}
+					
+					if(target.scrollTop() < 180) {
+						busy = true;
+						
+						target.css('-webkit-overflow-scrolling', 'auto');
+						target.animate({scrollTop: 180}, 'fast', 'swing', function() {
+							target.css('-webkit-overflow-scrolling', 'touch');
+							busy = false;
+						});
+					}
+				});
+		});
 	});
 	
 	var getTrigger = function(event, target) {
@@ -286,12 +320,14 @@
 					current.remove();
 					
 					$.mobility.busy = false;
+					$(window).trigger('mobility-swap-complete');
 				};
 				
 				var fadeEnd = function () {
 					current.remove();
 					
 					$.mobility.busy = false;
+					$(window).trigger('mobility-swap-complete');
 				};
 				
 				switch(effect) {
@@ -388,6 +424,7 @@
 						current.remove();
 						
 						$.mobility.busy = false;
+						$(window).trigger('mobility-swap-complete');
 						break;
 						
 				}
