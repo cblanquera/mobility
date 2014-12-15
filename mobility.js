@@ -387,7 +387,7 @@
 						section.appendTo(document.body).doon();
 						current.remove();
 						
-						$.mobility.busy = true;
+						$.mobility.busy = false;
 						break;
 						
 				}
