@@ -22,10 +22,16 @@ a, a:active, a:hover, a:visited { color: #000000; text-decoration: none; }
 .top { vertical-align: top !important; }
 .middle { vertical-align: middle !important; }
 .bottom { vertical-align: bottom !important; }
+.center { text-align: center !important; }
 
 /* Bootstrap Fixes
 -------------------------------*/
 .row img { width: 100%; }
+.body .btn {
+	display: block;
+	margin: 10px auto;
+	width: 95%;
+}
 
 /* Effects
 -------------------------------*/
@@ -196,7 +202,12 @@ a, a:active, a:hover, a:visited { color: #000000; text-decoration: none; }
 }
 
 .focus > * { display: table-cell; padding: 0 5px; vertical-align: top; width: 1%; }
-.focus > label { margin-bottom: 0; margin-right: 10px; vertical-align: middle; }
+.focus > label { 
+	margin-bottom: 0; 
+	margin-right: 10px; 
+	vertical-align: middle; 
+	white-space: nowrap; 
+}
 
 .focus input[type="text"],
 .focus input[type="password"],
@@ -219,14 +230,6 @@ a, a:active, a:hover, a:visited { color: #000000; text-decoration: none; }
 	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 	width: 100%;
 }
-
-.focus .input-group-addon {
-	background-color: transparent;
-	border: 0;
-	border-radius: 0;
-}
-
-.focus .eve-block { width: 100%; }
 
 .focus input[type="range"] { margin-top: 5px; }
 
@@ -397,6 +400,54 @@ a, a:active, a:hover, a:visited { color: #000000; text-decoration: none; }
 	z-index: 15;
 	background-color: rgba(0, 0, 0, .3);
 }
+
+/* Notify
+-------------------------------*/
+.notify { 
+	background-color: #232323;
+	color: #EFEFEF;
+	height: auto !important;
+	left: 0;
+	opacity: .95;
+	padding: 20px 20px 10px;
+	position: absolute;
+	text-align: center;
+	top: 0;
+	width: 100%;
+	z-index: 10;
+}
+
+.notify-info {
+  color: #FFFFFF;
+  background-color: #5BC0DE;
+}
+
+.notify-success {
+  color: #FFFFFF;
+  background-color: #5CB85C;
+}
+
+.notify-error {
+  color: #FFFFFF;
+  background-color: #D9534F;
+}
+
+.notify-warning {
+  color: #FFFFFF;
+  background-color: #F0AD4E;
+}
+
+.notify .message { 
+	display: block;
+	margin-top: 5px;
+	padding-right: 25px;
+}
+
+.notify > a { 
+	float: right; 
+	font-size: 20px;
+	color: #EFEFEF; 
+} 
 
 /* Tabs
 -------------------------------*/
@@ -746,7 +797,6 @@ a, a:active, a:hover, a:visited { color: #000000; text-decoration: none; }
 	background-color: #468fcc;
 	color: #FFF;
 }
-
 
 /* Pull To Refresh
 -------------------------------*/

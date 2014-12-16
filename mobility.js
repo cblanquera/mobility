@@ -51,7 +51,6 @@
 				});
 			});
 		})
-		
 	}).on('tab-switch-click', function(e) {
 		e.preventDefault();
 		e.originalEvent.stop = true;
@@ -97,7 +96,6 @@
 			.removeClass('sliding-down')
 			.on('webkitTransitionEnd', slideEnd)
 			.addClass('sliding');
-			
 	}).on('modal-close-click', function(e) {
 		e.preventDefault();
 		e.originalEvent.stop = true;
@@ -127,7 +125,6 @@
 			.on('webkitTransitionEnd', slideEnd)
 			.addClass('sliding')
 			.addClass('sliding-down');
-		
 	}).on('popover-open-click', function(e) {
 		e.preventDefault();
 		e.originalEvent.stop = true;
@@ -144,14 +141,122 @@
 		var target = $(getTarget(trigger));
 		
 		target.addClass('hide');
+	}).on('notify-open-click', function(e) {
+		e.preventDefault();
+		
+		if(e.originalEvent) {
+			e.originalEvent.stop = true;
+		}
+		
+		var trigger = getTrigger('notify-open-click', e.target);
+		var message = trigger.attr('data-message');
+		var type 	= trigger.attr('data-type');
+		
+		$.mobility.notify(message, type);
+	}).on('notify-close-click', function(e) {
+		e.preventDefault();
+		
+		if(e.originalEvent) {
+			e.originalEvent.stop = true;
+		}
+		
+		if($.mobility.busy) {
+			return;
+		}
+		
+		$.mobility.busy = true;
+		
+		var trigger = getTrigger('notify-close-click', e.target);
+		var target = $(getTarget(trigger));
+		
+		var slideEnd = function () {
+			target.remove();
+			$.mobility.busy = false;
+		};
+		
+		target[0].offsetWidth; // force reflow
+		
+		target
+			.on('webkitTransitionEnd', slideEnd)
+			.addClass('sliding')
+			.addClass('sliding-up');
+	}).on('paginate-init', function(e, message) {
+		//make sure message is jQuery
+		message = $(message);
+		
+		//the target will be the parent
+		var target = message.parent();
+		
+		//set a variable to scroll callback
+		//so we can unbind it later
+		var paginate = function() {
+			//if we are alreadty busy
+			if($.mobility.busy) {
+				//do nothing
+				return;
+			}
+			
+			//height = combined children - container
+			var height = -(target.height());
+			
+			target.children().each(function() {
+				height += $(this).outerHeight();
+			});
+			
+			//if the scroll is not 75% of the way
+			if(target.scrollTop() < (height * 0.75)) {
+				//do nothing
+				return;
+			}
+			
+			//we are going to attempt to get data now
+			//so we are busy
+			$.mobility.busy = true;
+			
+			//allow API listeners
+			$(window).trigger('mobility-paginate', [target, function(html) {
+				//okay we are not busy anymore
+				$.mobility.busy = false;
+				
+				//if no HTML
+				if(!html) {
+					//update message
+					message.html(message.attr('data-noresults'));
+					
+					//stop listening to it
+					target.unbind('scroll', paginate);
+					
+					//if u want to keep listening to it
+					//simply set HTML to true
+					return;
+				}
+				
+				//there is HTML
+				if(typeof html !== 'boolean') {
+					//add loading message
+					//and add the HTML
+					message
+					.html(message.attr('data-loading'))
+					.prev()
+					.append($(html)
+					.css('opacity', 0)
+					.animate({opacity: 1}));
+				}
+			}]);
+		};
+		
+		target.scroll(paginate);
 	}).on('refresh-pull-init', function(e, wizard) {
+		//make sure the wizard is jQuery
 		wizard = $(wizard);
-		
+		//set the initial message
 		$('span.message', wizard).html(wizard.attr('data-pull'));
-		
-		var busy = false, touching = false, last = 0, target = wizard.parent(), 
-		
-		rotate = function(e) {
+		//touching is false by default
+		var touching = false; 
+		//the target is the parent
+		var target = wizard.parent();
+		//rotates the icon
+		var rotate = function(e) {
 			var scroll = target.scrollTop();
 			
 			if(scroll < 181) {
@@ -165,9 +270,9 @@
 				 
 				$('i', wizard).css('transform', 'rotate('+ deg +'deg)');
 			}
-		},
-		
-		release = function(e) {
+		};
+		//determines when we should load
+		var release = function(e) {
 			if(target.scrollTop() != 0) {
 				return;
 			}
@@ -179,26 +284,50 @@
 			}
 			
 			load();
-		},
-		
-		load = function() {
-			if(busy) {
+		};
+		//resets the pull configuration
+		var retract = function() {
+			if($('span.message', wizard).html() === wizard.attr('data-release')) {
 				return;
 			}
 			
+			if(target.scrollTop() < 180) {
+				$.mobility.busy = true;
+				
+				target.css('-webkit-overflow-scrolling', 'auto');
+				target.animate({scrollTop: 180}, 'fast', 'swing', function() {
+					target.css('-webkit-overflow-scrolling', 'touch');
+					$.mobility.busy = false;
+				});
+			}
+		};
+		//loads the next set
+		var load = function() {
+			//if we are busy
+			if($.mobility.busy) {
+				//do nothing
+				return;
+			}
+			
+			//set initial message
 			$('span.message', wizard).html(wizard.attr('data-loading'));
 			
-			busy = true;
+			//okay lets get busy
+			$.mobility.busy = true;
+			//adjust the wizard height for effect
 			wizard.animate({paddingTop: 0, height: 50}, 'fast', function() {
+				//allow API listener
 				$(window).trigger('mobility-refresh', [target, function(html) {
+					//if HTML was returned
 					if(html) {
-						wizard
-						.next()
-						.prepend($(html)
-						.css('opacity', 0)
-						.animate({opacity: 1}));
+						//prepend it in
+						wizard.next()
+							.prepend($(html)
+							.css('opacity', 0)
+							.animate({opacity: 1}));
 					}
 					
+					//reset the wizard styles
 					wizard
 						.css('padding-top', '130px')
 						.css('height', '180px');
@@ -206,42 +335,36 @@
 					$('span.message', wizard).html(wizard.attr('data-pull'));
 					$('i', wizard).css('transform', 'rotate(0deg)');
 					
+					//scroll quirk in iOS
 					target.scrollTop(179);
 					setTimeout(function() {
 						target.scrollTop(180);
 					}, 5);
 					
-					busy = false;
+					$.mobility.busy = false;
 				}]);
 			});
 		};
-		
-		$(window).one('mobility-swap-complete', function() {
+		//initializes the pagination
+		var initialize = function() {
 			wizard.removeClass('hide');
 			target.scrollTop(180)
-				.on('scroll', rotate)
-				.on('scroll', release)
-				.on('touchstart', function() {
+				.on('scroll'		, rotate)
+				.on('scroll'		, release)
+				.on('touchend'		, retract)
+				.on('touchstart'	, function() {
 					touching = true;
 				})
 				.on('touchend', function() {
 					touching = false;
-					
-					if($('span.message', wizard).html() === wizard.attr('data-release')) {
-						return;
-					}
-					
-					if(target.scrollTop() < 180) {
-						busy = true;
-						
-						target.css('-webkit-overflow-scrolling', 'auto');
-						target.animate({scrollTop: 180}, 'fast', 'swing', function() {
-							target.css('-webkit-overflow-scrolling', 'touch');
-							busy = false;
-						});
-					}
 				});
-		});
+		};
+		
+		if($.mobility.busy) { 
+			$(window).one('mobility-swap-complete', initialize);
+		} else {
+			initialize();
+		}
 	});
 	
 	var getTrigger = function(event, target) {
@@ -295,9 +418,54 @@
 		return target;
 	};
 	
+	var notifyTpl = 
+	'<div id="notify-{UID}" class="notify{TYPE}"><a data-do="notify-close" '
+	+ 'data-on="click" href="#notify-{UID}"><i class="fa fa-times"></i></a><span '
+	+ 'class="message">{MESSAGE}</span></div>';
+	
 	$.extend({
 		mobility: {
 			busy: false,
+			uid: 0,
+			notify: function(message, type) {
+				if($('div.notify').length) {
+					$('div.notify > a').click();
+				}
+				
+				switch(type) {
+					case 'info':
+					case 'warning':
+					case 'error':
+					case 'success':
+						type = ' notify-' + type;
+						break;
+					default:
+						type = '';
+						break;
+				}
+				
+				var html = notifyTpl
+					.replace('{UID}'	, ++this.uid)
+					.replace('{UID}'	, this.uid)
+					.replace('{MESSAGE}', message)
+					.replace('{TYPE}'	, type);
+				
+				html = $(html).addClass('sliding-up');
+				
+				$('section.current').append(html);
+				
+				setTimeout(function() {
+					html
+						.doon()
+						.removeClass('sliding-up')
+						.addClass('sliding');
+				}, 1);
+				
+				setTimeout(function() {
+					html.children('a').click();
+				}, 3000);
+			},
+			
 			swap: function(html, effect) {
 				if($.mobility.busy) {
 					return;

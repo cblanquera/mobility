@@ -48,6 +48,12 @@
                 <a data-do="go-forward" data-on="click" href="#fields">Fields <i class="fa fa-chevron-right"></i><span class="badge">42</span></a>
                 <a data-do="go-forward" data-on="click" href="#list">List <i class="fa fa-chevron-right"></i></a>
             	<a data-do="go-forward" data-on="click" href="#refresh">Refresh <i class="fa fa-chevron-right"></i></a>
+                
+                <a data-do="notify-open" data-on="click" data-message="Hello" data-type="">Notify</a>
+                <a data-do="notify-open" data-on="click" data-message="Some Info" data-type="info">Notify - Info</a>
+                <a data-do="notify-open" data-on="click" data-message="Some Warning" data-type="warning">Notify - Warning</a>
+                <a data-do="notify-open" data-on="click" data-message="Some Error" data-type="error">Notify - Error</a>
+                <a data-do="notify-open" data-on="click" data-message="Some Success" data-type="success">Notify - Success</a>
             </nav>
         </section>
     </section>
@@ -671,6 +677,8 @@
                     </div>
                 </div>
             </div>
+			
+			<button data-do="paginate" data-loading="Loading..." data-noresults="No More Found." class="btn btn-default" disabled>Loading ...</button>
         </section>
     </script>
     
@@ -754,7 +762,20 @@
 		var rows = $(jQuery('#refresh-template').html());
 		setTimeout(function() {
 			callback(rows[(++i) % 4]);
-		}, 200);	
+		}, 1000);	
+	});
+	
+	var j = 0;
+	jQuery(window).on('mobility-paginate', function(e, target, callback) {
+		setTimeout(function() {
+			if(j === 5) {
+				callback();
+				return;
+			}
+			
+			callback(jQuery('#refresh-template').html());
+			j++;
+		}, 1000);	
 	});
     </script>
 </body>
