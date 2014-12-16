@@ -27,7 +27,7 @@ a, a:active, a:hover, a:visited { color: #000000; text-decoration: none; }
 /* Bootstrap Fixes
 -------------------------------*/
 .row img { width: 100%; }
-.body .btn {
+form .btn {
 	display: block;
 	margin: 10px auto;
 	width: 95%;
@@ -231,7 +231,14 @@ a, a:active, a:hover, a:visited { color: #000000; text-decoration: none; }
 	width: 100%;
 }
 
+.focus .input-group-addon {
+	background-color: transparent;
+	border: 0;
+	border-radius: 0;
+}
+
 .focus > .eve-block { width: 100%; }
+
 .focus input[type="range"] { margin-top: 5px; }
 
 .focus img { width: 100%; }
@@ -813,4 +820,10 @@ a, a:active, a:hover, a:visited { color: #000000; text-decoration: none; }
 .refresh-pull > i {
 	display: inline-block;
 	margin-right: 5px;
+}
+
+.paginate {
+	display: block;
+	margin: 10px auto;
+	width: 95%;
 }
