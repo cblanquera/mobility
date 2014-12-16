@@ -231,6 +231,7 @@ a, a:active, a:hover, a:visited { color: #000000; text-decoration: none; }
 	width: 100%;
 }
 
+.focus > .eve-block { width: 100%; }
 .focus input[type="range"] { margin-top: 5px; }
 
 .focus img { width: 100%; }
