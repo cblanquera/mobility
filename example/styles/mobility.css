@@ -460,24 +460,19 @@ form .btn {
 /* Hero
 -------------------------------*/
 .hero { 
-	height: 200px;
-	left: 0;
+	clear: both;
+	height: 150px;
 	overflow: hidden;
-	position: absolute;
-	right: 0;
+	position: relative;
 }
 
 .hero .frame {
-	-webkit-transition: -webkit-transform .4s;
-	   -moz-transition:    -moz-transform .4s;
-			transition:         transform .4s;
-			
 	height: 100%;
-	position: relative;
+	position: absolute;
 	white-space: nowrap;
 }
 
-.hero .frame img { height: 100%; }
+.hero .frame img { height: 100%; width: auto !important; }
 
 /* Tabs
 -------------------------------*/

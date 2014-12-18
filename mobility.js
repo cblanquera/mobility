@@ -371,9 +371,39 @@
 		var initialize = function() {
 			var index = 0;
 			
-			container.on('swipeleft', function(e) {
-				e.preventDefault();
+			//need swiping feature
+			var touched = 0;
+			container.on('mousedown touchstart', function(e) {
+				if(!e.originalEvent.touches) {
+					touched = e.pageX;
+					return;
+				}
 				
+				touched = e.originalEvent.touches[0].pageX;
+			});
+			
+			container.on('mousemove touchmove', function(e) {
+				e.preventDefault();
+			});
+			
+			container.on('mouseup touchend touchcancel', function(e) {
+				var end;
+				if(!e.originalEvent.changedTouches) {
+					end = e.pageX - touched;
+				} else {
+					end = e.originalEvent.changedTouches[0].pageX - touched;
+				}
+				
+				
+				
+				if(end < 0) {
+					container.trigger('swipe-left');
+				} else if(0 < end) {
+					container.trigger('swipe-right');
+				}
+			});
+			
+			container.on('swipe-left', function(e) {
 				var next = $('img', container).eq(++index);
 				
 				if(!next.length) {
@@ -381,12 +411,13 @@
 					return;
 				}
 				
-				$('div.frame', container).css('transform', 
-				'translate3d(-'+next.position().left+'px, 0, 0)');
+				$('div.frame', container).animate({ left: next.position().left * -1 });
+				
+				/*$('div.frame', container).css('transform', 
+				'translate3d(-'+next.position().left+'px, 0, 0)');*/
 				
 				return false;
-			}).on('swiperight', function(e) {
-				e.preventDefault();
+			}).on('swipe-right', function(e) {
 				var next = $('img', container).eq(--index);
 				
 				if(!next.length || index < 0) {
@@ -394,8 +425,10 @@
 					return;
 				}
 				
-				$('div.frame', container).css('transform', 
-				'translate3d(-'+next.position().left+'px, 0, 0)');
+				$('div.frame', container).animate({ left: next.position().left * -1 });
+				
+				/*$('div.frame', container).css('transform', 
+				'translate3d(-'+next.position().left+'px, 0, 0)');*/
 				
 				return false;
 			});
@@ -464,6 +497,7 @@
 	'<div id="notify-{UID}" class="notify{TYPE}"><a data-do="notify-close" '
 	+ 'data-on="click" href="#notify-{UID}"><i class="fa fa-times"></i></a><span '
 	+ 'class="message">{MESSAGE}</span></div>';
+	
 	
 	$.extend({
 		mobility: {
