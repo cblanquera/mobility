@@ -457,6 +457,28 @@ form .btn {
 	color: #EFEFEF; 
 } 
 
+/* Hero
+-------------------------------*/
+.hero { 
+	height: 200px;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	right: 0;
+}
+
+.hero .frame {
+	-webkit-transition: -webkit-transform .4s;
+	   -moz-transition:    -moz-transform .4s;
+			transition:         transform .4s;
+			
+	height: 100%;
+	position: relative;
+	white-space: nowrap;
+}
+
+.hero .frame img { height: 100%; }
+
 /* Tabs
 -------------------------------*/
 .tabs {

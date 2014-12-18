@@ -365,6 +365,48 @@
 		} else {
 			initialize();
 		}
+	}).on('hero-init', function(e, container) {
+		container = $(container);
+		
+		var initialize = function() {
+			var index = 0;
+			
+			container.on('swipeleft', function(e) {
+				e.preventDefault();
+				
+				var next = $('img', container).eq(++index);
+				
+				if(!next.length) {
+					index--;
+					return;
+				}
+				
+				$('div.frame', container).css('transform', 
+				'translate3d(-'+next.position().left+'px, 0, 0)');
+				
+				return false;
+			}).on('swiperight', function(e) {
+				e.preventDefault();
+				var next = $('img', container).eq(--index);
+				
+				if(!next.length || index < 0) {
+					index++;
+					return;
+				}
+				
+				$('div.frame', container).css('transform', 
+				'translate3d(-'+next.position().left+'px, 0, 0)');
+				
+				return false;
+			});
+		};
+		
+		if($.mobility.busy) {
+			$(window).on('mobility-swap-complete', initialize);
+			return;
+		}
+		
+		initialize();
 	});
 	
 	var getTrigger = function(event, target) {

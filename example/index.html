@@ -32,7 +32,8 @@
             <h4 class="pad upper">Mobility UI</h4>
             <div class="focus">
             	<p>Mobility is a super light weight HTML, CSS, and JS framework
-                built on top of Bootstrap for developing mobile applications.</p>
+                built on top of Bootstrap for developing mobile applications. 
+                Tried and tested on PhoneGap</p>
                 
             </div>
             
@@ -48,12 +49,8 @@
                 <a data-do="go-forward" data-on="click" href="#fields">Fields <i class="fa fa-chevron-right"></i><span class="badge">42</span></a>
                 <a data-do="go-forward" data-on="click" href="#list">List <i class="fa fa-chevron-right"></i></a>
             	<a data-do="go-forward" data-on="click" href="#refresh">Refresh <i class="fa fa-chevron-right"></i></a>
-                
-                <a data-do="notify-open" data-on="click" data-message="Hello" data-type="">Notify</a>
-                <a data-do="notify-open" data-on="click" data-message="Some Info" data-type="info">Notify - Info</a>
-                <a data-do="notify-open" data-on="click" data-message="Some Warning" data-type="warning">Notify - Warning</a>
-                <a data-do="notify-open" data-on="click" data-message="Some Error" data-type="error">Notify - Error</a>
-                <a data-do="notify-open" data-on="click" data-message="Some Success" data-type="success">Notify - Success</a>
+                <a data-do="go-forward" data-on="click" href="#notify">Notify <i class="fa fa-chevron-right"></i></a>
+                <a data-do="go-forward" data-on="click" href="#hero">Hero <i class="fa fa-chevron-right"></i></a>
             </nav>
         </section>
     </section>
@@ -160,7 +157,11 @@
         </section>
     </div>
     
-    <div id="popover" class="popover hide" data-do="popover-close" data-on="click" data-target="#popover">
+    <div id="popover" 
+    	class="popover hide" 
+        data-do="popover-close" 
+        data-on="click" 
+        data-target="#popover">
         <nav class="nav-list">
             <a data-do="go-forward" data-on="click" href="#typography">Typography</a>
             <a data-do="go-forward" data-on="click" href="#tabs">Tabs</a>
@@ -182,7 +183,8 @@
         <section class="body with-head with-foot">
             <div class="focus">
             	<p>Mobility is a super light weight HTML, CSS, and JS framework
-                built on top of Bootstrap for developing mobile applications.</p>
+                built on top of Bootstrap for developing mobile applications. 
+                Tried and tested on PhoneGap.</p>
                 
             </div>
             
@@ -197,7 +199,9 @@
                 <a data-do="go-forward" data-on="click" href="#tabs">Tabs <i class="fa fa-edit"></i></a>
                 <a data-do="go-forward" data-on="click" href="#fields">Fields <i class="fa fa-chevron-right"></i><span class="badge">42</span></a>
                 <a data-do="go-forward" data-on="click" href="#list">List <i class="fa fa-chevron-right"></i></a>
-                <a data-do="go-forward" data-on="click" href="#refresh">Refresh <i class="fa fa-chevron-right"></i></a>
+            	<a data-do="go-forward" data-on="click" href="#refresh">Refresh <i class="fa fa-chevron-right"></i></a>
+                <a data-do="go-forward" data-on="click" href="#notify">Notify <i class="fa fa-chevron-right"></i></a>
+                <a data-do="go-forward" data-on="click" href="#hero">Hero <i class="fa fa-chevron-right"></i></a>
             </nav>
         </section>
     </script>
@@ -588,6 +592,23 @@
         </section>
     </script>
     
+    <script id="notify" type="text/html">
+		<header class="head">
+            <a class="head-btn btn btn-default pull-left" data-do="go-back" data-on="click" href="#home">Back</a>
+            <h1 class="title">Demo - Hero</h1>
+        </header>
+        
+        <section class="body with-head with-foot">
+            <nav class="nav-list">
+                <a data-do="notify-open" data-on="click" data-message="Hello" data-type="">Notify</a>
+                <a data-do="notify-open" data-on="click" data-message="Some Info" data-type="info">Notify - Info</a>
+                <a data-do="notify-open" data-on="click" data-message="Some Warning" data-type="warning">Notify - Warning</a>
+                <a data-do="notify-open" data-on="click" data-message="Some Error" data-type="error">Notify - Error</a>
+                <a data-do="notify-open" data-on="click" data-message="Some Success" data-type="success">Notify - Success</a>
+            </nav>
+        </section>
+    </script>
+    
     <script id="refresh" type="text/html">
         <header class="head">
             <a class="head-btn btn btn-default pull-left" data-do="go-back" data-on="click" href="#home">Back</a>
@@ -678,7 +699,13 @@
                 </div>
             </div>
 			
-			<button class="paginate" data-do="paginate" data-loading="Loading..." data-noresults="No More Found." class="btn btn-default" disabled>Loading ...</button>
+			<button 
+				class="paginate" 
+				data-do="paginate" 
+				data-loading="Loading..." 
+				data-noresults="No More Found." 
+				class="btn btn-default" 
+				disabled>Loading ...</button>
         </section>
     </script>
     
@@ -751,6 +778,24 @@
 				<i class="fa fa-chevron-right"></i>
 			</div>
 		</div>
+    </script>
+    
+    <script id="hero" type="text/html">
+        <header class="head">
+            <a class="head-btn btn btn-default pull-left" data-do="go-back" data-on="click" href="#home">Back</a>
+            <h1 class="title">Demo - Hero</h1>
+        </header>
+        <section class="body with-foot with-head pad">
+            <div class="hero" data-do="hero">
+				<div class="frame">
+					<img src="images/africa-139343_640.jpg" />
+					<img src="images/american-football-63109_640.jpg" />
+					<img src="images/baby-19295_640.jpg" />
+					<img src="images/baby-20339_640.jpg" />
+					<img src="images/couple-168191_640.jpg" />
+				</div>
+			</div>
+        </section>
     </script>
     
     <script type="text/javascript">
