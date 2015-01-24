@@ -1537,7 +1537,7 @@ jQuery(window).on('mobility-paginate', function(e, target, callback) {
 			
 			//remote call yes? lets use acquire!
 			if(target === '/acquire') {
-				require('/template.html', function(html) {
+				require('/mobility/template.html', function(html) {
 					jQuery.mobility.swap(html);
 				});
 				
