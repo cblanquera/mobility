@@ -245,6 +245,7 @@ form .btn {
 	position: absolute;
 	top: 0;
 	z-index: 20;
+	display: none;
 }
 
 .aside-left { 
@@ -296,6 +297,12 @@ form .btn {
 		    transform: translate3d(-212px, 0, 0);
 	
 	overflow: visible;
+}
+
+.aside-slide-right .aside, 
+.aside-return .aside, 
+.aside-slide-left .aside {
+	display: block;
 }
 
 /* Focus

@@ -468,7 +468,7 @@
 		});
 		
 		var initialize = function() {
-			$.mobility.swipe(container);
+			$.mobility.swipe(container, 20);
 			
 			container.on('swipe-right', function(e) {
 				if(container.hasClass('aside-slide-left')
@@ -517,7 +517,7 @@
 		});
 		
 		var initialize = function() {
-			$.mobility.swipe(container);
+			$.mobility.swipe(container, 20);
 			
 			container.on('swipe-left', function(e) {
 				if(container.hasClass('aside-slide-left')
@@ -835,7 +835,9 @@
 				}
 			},
 			
-			swipe: function(container) {
+			swipe: function(container, range) {
+				range = range || 0;
+				
 				//make sure its jQuery
 				container = $(container);
 				
@@ -859,7 +861,7 @@
 				});
 				
 				container.on('mousemove touchmove', function(e) {
-					e.preventDefault();
+					//e.preventDefault();
 				});
 				
 				container.on('mouseup touchend touchcancel', function(e) {
@@ -870,9 +872,9 @@
 						end = e.originalEvent.changedTouches[0].pageX - touched;
 					}
 					
-					if(end < 0) {
+					if(end < 0 && Math.abs(end) >= range) {
 						container.trigger('swipe-left');
-					} else if(0 < end) {
+					} else if(0 < end && Math.abs(end) >= range) {
 						container.trigger('swipe-right');
 					}
 				});
