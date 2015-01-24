@@ -138,7 +138,7 @@
         </nav>
     </div>
     
-    <aside id="aside-right" class="aside aside-right" data-do="aside-right">
+    <aside id="aside-right" class="aside aside-right">
         <h2 class="pad">Mobility</h2>
         <nav class="nav-list">
             <a data-do="go-forward" data-on="click" href="#basics">Basics <i class="fa fa-chevron-right"></i></a>
@@ -154,7 +154,7 @@
         </nav>
     </aside>
     
-    <aside id="aside-left" class="aside aside-left" data-do="aside-left">
+    <aside id="aside-left" class="aside aside-left">
         <h2 class="pad">Mobility</h2>
         <nav class="nav-list">
             <a data-do="go-forward" data-on="click" href="#basics">Basics <i class="fa fa-chevron-right"></i></a>
@@ -427,13 +427,14 @@
 			<p class="pad">If you want to create an aside on the right change 
 			<code>aside-left</code> to <code>aside-right</code> in the class attribute.</p>
 			
-			<p class="pad">If you want to show asides by swiping simply add on the data attribute 
-			<code>data-do="aside-left"</code> to the aside element.</p>
-			
 			<h4 class="pad upper">Aside Trigger</h4>
 			
 			<p class="pad">To see the trigger in action just click <strong>
-			<a data-do="aside-left" data-on="click" href="#aside-left">Here</a></strong>.</p>
+			<a data-do="aside-left" data-on="click" href="#aside-left">here for the left</a></strong>
+			or <strong>
+			<a data-do="aside-right" data-on="click" href="#aside-left">here for the right</a></strong>.</p>
+			
+			
 			
 <pre><code class="language-html" data-lang="html">&lt;a 
   data-do="aside-left" 
