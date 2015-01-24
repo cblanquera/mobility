@@ -564,6 +564,10 @@
 		try {
             if($(target).length) {
 				if($(target).parent().hasClass('aside-slide-right')) {
+					$(target).parent().one('webkitTransitionEnd', function() {
+						$(target).parent().removeClass('aside-return');
+					});
+					
 					$(target).parent()
 						.removeClass('aside-slide-right')
 						.addClass('aside-return');
@@ -588,6 +592,10 @@
 		try {
             if($(target).length) {
 				if($(target).parent().hasClass('aside-slide-left')) {
+					$(target).parent().one('webkitTransitionEnd', function() {
+						$(target).parent().removeClass('aside-return');
+					});
+					
 					$(target).parent()
 						.removeClass('aside-slide-left')
 						.addClass('aside-return');
