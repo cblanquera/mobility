@@ -299,9 +299,9 @@ form .btn {
 	overflow: visible;
 }
 
-.aside-slide-right, 
-.aside-return, 
-.aside-slide-left {
+.aside-slide-right .aside, 
+.aside-return .aside, 
+.aside-slide-left .aside {
 	display: block;
 }
 
