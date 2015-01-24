@@ -138,22 +138,6 @@
         </nav>
     </div>
     
-    <aside id="aside-right" class="aside aside-right">
-        <h2 class="pad">Mobility</h2>
-        <nav class="nav-list">
-            <a data-do="go-forward" data-on="click" href="#basics">Basics <i class="fa fa-chevron-right"></i></a>
-            <a data-do="go-forward" data-on="click" href="#typography">Typography <i class="fa fa-plus"></i></a>
-            
-            <a data-do="go-forward" data-on="click" href="#transition">Transitions <i class="fa fa-chevron-right"></i></a>
-            <a data-do="go-forward" data-on="click" href="#tabs">Tabs <i class="fa fa-edit"></i></a>
-            <a data-do="go-forward" data-on="click" href="#fields">Fields <i class="fa fa-chevron-right"></i><span class="badge">42</span></a>
-            <a data-do="go-forward" data-on="click" href="#list">List <i class="fa fa-chevron-right"></i></a>
-            <a data-do="go-forward" data-on="click" href="#refresh">Refresh <i class="fa fa-chevron-right"></i></a>
-            <a data-do="go-forward" data-on="click" href="#notify">Notify <i class="fa fa-chevron-right"></i></a>
-            <a data-do="go-forward" data-on="click" href="#hero">Hero <i class="fa fa-chevron-right"></i></a>
-        </nav>
-    </aside>
-    
     <aside id="aside-left" class="aside aside-left">
         <h2 class="pad">Mobility</h2>
         <nav class="nav-list">
@@ -430,9 +414,7 @@
 			<h4 class="pad upper">Aside Trigger</h4>
 			
 			<p class="pad">To see the trigger in action just click <strong>
-			<a data-do="aside-left" data-on="click" href="#aside-left">here for the left</a></strong>
-			or <strong>
-			<a data-do="aside-right" data-on="click" href="#aside-left">here for the right</a></strong>.</p>
+			<a data-do="aside-left" data-on="click" href="#aside-left">here</a></strong>.</p>
 			
 			
 			
@@ -1537,7 +1519,7 @@ jQuery(window).on('mobility-paginate', function(e, target, callback) {
 			
 			//remote call yes? lets use acquire!
 			if(target === '/acquire') {
-				require('/template.html', function(html) {
+				require('/mobility/template.html', function(html) {
 					jQuery.mobility.swap(html);
 				});
 				
