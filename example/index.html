@@ -138,9 +138,41 @@
         </nav>
     </div>
     
+    <aside id="aside-right" class="aside aside-right" data-do="aside-right">
+        <h2 class="pad">Mobility</h2>
+        <nav class="nav-list">
+            <a data-do="go-forward" data-on="click" href="#basics">Basics <i class="fa fa-chevron-right"></i></a>
+            <a data-do="go-forward" data-on="click" href="#typography">Typography <i class="fa fa-plus"></i></a>
+            
+            <a data-do="go-forward" data-on="click" href="#transition">Transitions <i class="fa fa-chevron-right"></i></a>
+            <a data-do="go-forward" data-on="click" href="#tabs">Tabs <i class="fa fa-edit"></i></a>
+            <a data-do="go-forward" data-on="click" href="#fields">Fields <i class="fa fa-chevron-right"></i><span class="badge">42</span></a>
+            <a data-do="go-forward" data-on="click" href="#list">List <i class="fa fa-chevron-right"></i></a>
+            <a data-do="go-forward" data-on="click" href="#refresh">Refresh <i class="fa fa-chevron-right"></i></a>
+            <a data-do="go-forward" data-on="click" href="#notify">Notify <i class="fa fa-chevron-right"></i></a>
+            <a data-do="go-forward" data-on="click" href="#hero">Hero <i class="fa fa-chevron-right"></i></a>
+        </nav>
+    </aside>
+    
+    <aside id="aside-left" class="aside aside-left" data-do="aside-left">
+        <h2 class="pad">Mobility</h2>
+        <nav class="nav-list">
+            <a data-do="go-forward" data-on="click" href="#basics">Basics <i class="fa fa-chevron-right"></i></a>
+            <a data-do="go-forward" data-on="click" href="#typography">Typography <i class="fa fa-plus"></i></a>
+            
+            <a data-do="go-forward" data-on="click" href="#transition">Transitions <i class="fa fa-chevron-right"></i></a>
+            <a data-do="go-forward" data-on="click" href="#tabs">Tabs <i class="fa fa-edit"></i></a>
+            <a data-do="go-forward" data-on="click" href="#fields">Fields <i class="fa fa-chevron-right"></i><span class="badge">42</span></a>
+            <a data-do="go-forward" data-on="click" href="#list">List <i class="fa fa-chevron-right"></i></a>
+            <a data-do="go-forward" data-on="click" href="#refresh">Refresh <i class="fa fa-chevron-right"></i></a>
+            <a data-do="go-forward" data-on="click" href="#notify">Notify <i class="fa fa-chevron-right"></i></a>
+            <a data-do="go-forward" data-on="click" href="#hero">Hero <i class="fa fa-chevron-right"></i></a>
+        </nav>
+    </aside>
+    
     <script id="home" type="text/html">
         <header class="head">
-            <a class="head-btn btn btn-default pull-left" data-do="go-back" data-on="click" href="#home">Back</a>
+            <a class="head-btn btn btn-default pull-left" data-do="aside-left" data-on="click" href="#aside-left"><i class="fa fa-bars"></i></a>
             <a class="head-btn btn btn-default pull-right" data-do="modal-open" data-on="click" href="#modal">Open</a>
             <h1 class="title">
                 <a data-do="popover-open" data-on="click" href="#popover">Demo <i class="fa fa-caret-down"></i></a>
@@ -163,7 +195,8 @@
             
             <h4 class="pad upper">Demo</h4>
             <nav class="nav-list">
-                <a data-do="go-forward" data-on="click" href="#typography">Typography <i class="fa fa-plus"></i></a>
+                <a data-do="go-forward" data-on="click" href="#basics">Basics <i class="fa fa-chevron-right"></i></a>
+            	<a data-do="go-forward" data-on="click" href="#typography">Typography <i class="fa fa-plus"></i></a>
 				<a data-do="go-forward" data-on="click" href="#transition">Transitions <i class="fa fa-chevron-right"></i></a>
                 <a data-do="go-forward" data-on="click" href="#tabs">Tabs <i class="fa fa-edit"></i></a>
                 <a data-do="go-forward" data-on="click" href="#fields">Fields <i class="fa fa-chevron-right"></i><span class="badge">42</span></a>
@@ -172,6 +205,279 @@
                 <a data-do="go-forward" data-on="click" href="#notify">Notify <i class="fa fa-chevron-right"></i></a>
                 <a data-do="go-forward" data-on="click" href="#hero">Hero <i class="fa fa-chevron-right"></i></a>
             </nav>
+        </section>
+    </script>
+    
+    <script id="basics" type="text/html">
+		<header class="head">
+            <a class="head-btn btn btn-default pull-left" data-do="go-back" data-on="click" href="#home">Back</a>
+            
+            <h1 class="title">Demo - Basics</h1>
+        </header>
+        
+        <section class="body with-head with-foot">
+			<h4 class="pad upper">Starting Up Mobility</h4>
+			
+			<p class="pad"><code>jQuery.mobility.start();</code></p>
+			
+			<h4 class="pad upper">Do On</h4>
+			
+			<p class="pad">You can apply all Mobility components using a 
+			concept called <code>data-do</code> and <code>data-on</code>. These 2 HTML 
+			attributes are used throughout the usage of Mobility instead of relying on 
+			activating components using JavaScript for ease of use.</p>
+			
+			<p class="pad">The basic usage for Do On shows how to transition through different pages.</p>
+
+<pre><code class="language-html" data-lang="html">&lt;a 
+  data-do="go-forward" 
+  data-on="click" 
+  href="#home"&gt;
+  Next Page
+&lt;/a&gt;</code></pre>
+			
+			<p class="pad">The example above shows how we would setup a link to a particular page called
+			<code>#home</code>. We can complete this functionality by including the following HTML 
+			into our page.</p>
+
+<pre><code class="language-html" data-lang="html">&lt;script id="home" type="text/javascript"&gt;
+  &lt;p class="pad"&gt;Welcome Home!&lt;/p&gt;
+&lt;/script&gt;</code></pre>
+			
+			<p class="pad"><code>go-forward</code>, when pressed slides the screen to the left and exposes 
+			our new page. You can substitute the <code>data-do="go-forward"</code> attribute with other 
+			transitions like <code>data-do="go-back"</code> which will slide right, 
+			<code>data-do="go-previous"</code> which slides down, 
+			<code>data-do="go-forward"</code> which will slide up, or 
+			<code>data-do="go-fade"</code> which will fade into the next page.</p>
+			
+			<p class="pad">To see all the transitions in action you can checkout
+			<strong><a data-do="go-forward" data-on="click" href="#transition">Demo - 
+			Transitions.</a></strong></p>
+			
+			<h4 class="pad upper">Basic Page</h4>
+			
+			<p class="pad">Almost every Mobility page will utilize a head, body and foot. The 
+			example below shows the most simplistic implementation to utilize all three elements.</p>
+			
+<pre><code class="language-html" data-lang="html">&lt;header class="head"&gt;
+  &hellip;
+&lt;/header&gt;
+&lt;section class="screen current with-head with-foot"&gt;
+  &hellip;
+&lt;/section&gt;
+&lt;footer class="foot"&gt;
+  &hellip;
+&lt;/footer&gt;</code></pre>
+
+			<p class="pad">If a page in your app will not be using a footer, you can omit the 
+			<code>with-foot</code> in the class name. Likewise for header, you can omit the 
+			<code>with-head</code> in the class name if there is no header element.</p>
+			
+			<h4 class="pad upper">Header</h4>
+			<p class="pad">The following sections show how headers can be formed. Even inside the 
+			header element you can fully utilize Bootstrap and custom fit it with your app.</p>
+			 
+			<h4 class="pad upper">Basic Header</h4>
+			
+<pre><code class="language-html" data-lang="html">&lt;header class="head"&gt;
+  &lt;h1 class="title"&gt;Demo&lt;/h1&gt;
+&lt;/header&gt;</code></pre>
+
+			<h4 class="pad upper">Header With Navigation</h4>
+			
+<pre><code class="language-html" data-lang="html">&lt;header class="head"&gt;
+  &lt;a 
+    class="head-btn btn btn-default pull-left" 
+    data-do="go-back" 
+    data-on="click" 
+    href="#home"&gt;
+      Back
+  &lt;/a&gt;
+  &lt;a 
+    class="head-btn btn btn-default pull-right" 
+    data-do="go-forward" 
+    data-on="click" 
+    href="#home"&gt;
+      Next
+  &lt;/a&gt;
+  &lt;h1 class="title"&gt;Demo&lt;/h1&gt;
+&lt;/header&gt;</code></pre>
+
+			<h4 class="pad upper">Header With Menu</h4>
+
+<pre><code class="language-html" data-lang="html">&lt;header class="head"&gt;
+  &lt;h1 class="title"&gt;
+    &lt;a 
+      data-do="popover-open" 
+      data-on="click" 
+      href="#popover"&gt;
+        Demo 
+        &lt;i class="fa fa-caret-down"&gt;&lt;/i&gt;&lt;/a&gt;
+  &lt;/h1&gt;
+&lt;/header&gt;
+
+&lt;div id="popover" 
+  class="popover hide" 
+  data-do="popover-close" 
+  data-on="click" 
+  data-target="#popover"&gt;
+  &lt;nav class="nav-list"&gt;
+    &lt;a 
+     data-do="go-forward" 
+     data-on="click" 
+     href="#typography"&gt;
+       Typography
+	&lt;/a&gt;
+    &lt;a  
+     data-do="go-forward" 
+     data-on="click" 
+     href="#tabs"&gt;
+       Tabs
+    &lt;/a&gt;
+    &lt;a  
+     data-do="go-forward" 
+     data-on="click" 
+     href="#fields"&gt;
+       Fields
+    &lt;/a&gt;
+    &lt;a  
+     data-do="go-forward" 
+     data-on="click" 
+     href="#list"&gt;
+       List
+    &lt;/a&gt;
+    &lt;a 
+     data-do="go-forward" 
+     data-on="click" 
+     href="#refresh"&gt;
+       Refresh 
+    &lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/div&gt;</code></pre>
+
+			<h4 class="pad upper">Footer</h4>
+			
+			<p class="pad">The following example show how footers can be formed. Even inside the 
+			footer element you can fully utilize Bootstrap and custom fit it with your app.</p>
+			
+<pre><code class="language-html" data-lang="html">&lt;footer class="foot"&gt;
+  &lt;nav class="foot-nav" data-do="foot-nav"&gt;
+    &lt;a 
+      class="foot-nav-item" 
+      data-do="go-back" 
+      data-on="click" 
+      href="#home"&gt;
+        &lt;i class="foot-nav-icon fa fa-home"&gt;&lt;/i&gt;
+        &lt;span class="foot-nav-label"&gt;
+          Home
+        &lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a 
+      class="foot-nav-item" 
+      data-do="go-back" 
+      data-on="click" 
+      href="#profile"&gt;
+        &lt;i class="foot-nav-icon fa fa-user"&gt;&lt;/i&gt;
+        &lt;span class="foot-nav-label"&gt;
+          Profile
+        &lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a 
+      class="foot-nav-item" 
+      data-do="go-back" 
+      data-on="click" 
+      href="#favorites"&gt;
+        &lt;i class="foot-nav-icon fa fa-star"&gt;&lt;/i&gt;
+        &lt;span class="foot-nav-label"&gt;
+          Favorites
+        &lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a 
+      class="foot-nav-item" 
+      data-do="go-back" 
+      data-on="click" 
+      href="#modal"&gt;
+        &lt;i class="foot-nav-icon fa fa-search"&gt;&lt;/i&gt;
+        &lt;span class="foot-nav-label"&gt;
+          Search
+        &lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a 
+      class="foot-nav-item" 
+      data-do="go-back" 
+      data-on="click" 
+      href="#modal"&gt;
+        &lt;i class="foot-nav-icon fa fa-cog"&gt;&lt;/i&gt;
+        &lt;span class="foot-nav-label"&gt;
+          Settings
+        &lt;/span&gt;
+    &lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/footer&gt;</code></pre>
+			
+			<h4 class="pad upper">Asides</h4>
+			<p class="pad">Asides are containers for extra content initially hidden on the left 
+			and/or the right. Asides can be either (or both) activated by swipe or a trigger.</p>
+			
+<pre><code class="language-html" data-lang="html">&lt;aside id="aside" class="aside aside-left"&gt;
+  &hellip;
+&lt;/aside&gt;</code></pre>			
+			
+			<p class="pad">If you want to create an aside on the right change 
+			<code>aside-left</code> to <code>aside-right</code> in the class attribute.</p>
+			
+			<p class="pad">If you want to show asides by swiping simply add on the data attribute 
+			<code>data-do="aside-left"</code> to the aside element.</p>
+			
+			<h4 class="pad upper">Aside Trigger</h4>
+			
+			<p class="pad">To see the trigger in action just click <strong>
+			<a data-do="aside-left" data-on="click" href="#aside-left">Here</a></strong>.</p>
+			
+<pre><code class="language-html" data-lang="html">&lt;a 
+  data-do="aside-left" 
+  data-on="click" 
+  href="#aside"&gt;
+    Menu
+&lt;/a&gt;</code></pre>				
+			
+			<h4 class="pad upper">Modal</h4>
+			<p class="pad">Modals are custom popups that over take the screen.
+			To see modals in action click <strong><a data-do="modal-open" 
+			data-on="click" href="#modal">Open</a></strong>.</p>
+			
+<pre><code class="language-html" data-lang="html">&lt;a 
+  data-do="modal-open" 
+  data-on="click" 
+  href="#modal"&gt;
+    Open
+  &lt;/a&gt;
+
+&lt;div id="modal" class="modal hide"&gt;
+  &lt;header class="head"&gt;
+    &lt;a 
+      class="head-link pull-right" 
+      href="#modal" 
+      data-do="modal-close" 
+      data-on="click"&gt;
+        &lt;i class="fa fa-times"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+    &lt;h1 class="title"&gt;Modal&lt;/h1&gt;
+  &lt;/header&gt;
+
+  &lt;section class="body with-head"&gt;
+    &lt;p class="pad"&gt;The contents of my 
+	modal go here. Lorem ipsum dolor sit 
+	amet, consectetur adipisicing elit, 
+	sed do eiusmod tempor incididunt ut 
+	labore et dolore magna aliqua. Ut 
+	enim ad minim veniam, quis nostrud 
+	exercitation ullamco laboris nisi 
+	ut.&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/div&gt;</code></pre>
+
         </section>
     </script>
     
@@ -223,6 +529,82 @@
 				<a data-do="go-forward" data-on="click" href="/remote">Remote <i class="fa fa-chevron-right"></i></a>
 				<a data-do="go-forward" data-on="click" href="/acquire">With Acquire <i class="fa fa-chevron-right"></i></a>
             </nav>
+			
+			<h4 class="pad upper">Code</h4>
+			
+<pre><code class="language-html" data-lang="html">&lt;a 
+  data-do="go-forward" 
+  data-on="click" 
+  href="#transition"&gt;
+  Forward
+&lt;/a&gt;
+
+&lt;a 
+  data-do="go-back" 
+  data-on="click" 
+  href="#transition"&gt;
+  Back
+&lt;/a&gt;
+
+&lt;a 
+  data-do="go-previous" 
+  data-on="click" 
+  href="#transition"&gt;
+  Previous
+&lt;/a&gt;
+
+&lt;a 
+  data-do="go-next" 
+  data-on="click" 
+  href="#transition"&gt;
+  Next
+&lt;/a&gt;
+
+&lt;a 
+  data-do="go-fade" 
+  data-on="click" 
+  href="#transition"&gt;
+  Fade
+&lt;/a&gt;
+
+&lt;a 
+  data-do="go-forward" 
+  data-on="click" 
+  href="/remote"&gt;
+  Remote
+&lt;/a&gt;
+
+&lt;a 
+  data-do="go-forward" 
+  data-on="click" 
+  href="/acquire"&gt;
+  Remote
+&lt;/a&gt;
+
+&lt;script type="text/javascript"&gt;
+//remote transition are pluggable in this manner
+jQuery(window).on('mobility-request', function(e, target, effect) {
+	jQuery(window).one('mobility-swap-complete', function() {
+		var current = jQuery('section.screen.current').addClass('loading');
+		
+		//remote call yes? lets use acquire!
+		if(target === '/acquire') {
+			require('/template.html', function(html) {
+				jQuery.mobility.swap(html);
+			});
+			
+			return;
+		}
+		
+		//Probably do Ajax instead of this
+		setTimeout(function() {
+			jQuery.mobility.swap(jQuery('#transition').html());
+		}, 5000);
+	});
+	
+	jQuery.mobility.swap('', 'slide-left');
+});
+&lt;/script&gt;</code></pre>
         </section>
     </script>
     
@@ -275,6 +657,51 @@
             <div id="tab4" class="focus hide">Maecenas sed diam eget risus varius blandit sit amet 
             non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non 
             commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</div>
+			
+			<h4 class="pad upper">Tab List HTML</h4>
+			
+<pre><code>&lt;nav class="tabs"&gt;
+  &lt;a 
+    class="active" 
+    data-do="tab-switch" 
+    data-on="click" 
+    href="#tab1"&gt;
+      Home
+  &lt;/a&gt;
+  &lt;a 
+    data-do="tab-switch" 
+    data-on="click" 
+    href="#tab2"&gt;
+      Profile
+  &lt;/a&gt;
+  &lt;a 
+    data-do="tab-switch" 
+    data-on="click" 
+    href="#tab3"&gt;
+      Messages
+  &lt;/a&gt;
+  &lt;a 
+    data-do="tab-switch" 
+    data-on="click" 
+    href="#tab4"&gt;
+      Code
+  &lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+
+		<h4 class="pad upper">Tab Content HTML</h4>
+			
+<pre><code>&lt;div id="tab1"&gt;
+  &hellip;
+&lt;/div&gt;
+&lt;div id="tab2" class="hide"&gt;
+  &hellip;
+&lt;/div&gt;
+&lt;div id="tab3" class="hide"&gt;
+  &hellip;
+&lt;/div&gt;
+&lt;div id="tab4" class="hide"&gt;
+  &hellip;
+&lt;/div&gt;</code></pre>
         </section>
     </script>
     
@@ -288,31 +715,95 @@
                 <label>Input</label>
                 <input type="text" class="form-control" placeholder="Text input" />
             </div>
+
+			<h4 class="upper pad">Input Code</h4>
+			
+<pre><code>&lt;div class="focus"&gt;
+  &lt;label>Input&lt;/label&gt;
+  &lt;input 
+    type="text" 
+    class="form-control" 
+    placeholder="Text input" /&gt;
+&lt;/div&gt;</code></pre>
+
             <div class="focus">
                 <label>Password</label>
                 <input type="password" class="form-control" placeholder="Enter Text" />
             </div>
             
+			<h4 class="upper pad">Password Code</h4>
+			
+<pre><code>&lt;div class="focus"&gt;
+  &lt;label>Input&lt;/label&gt;
+  &lt;input 
+    type="password" 
+    class="form-control" 
+    placeholder="Text Text" /&gt;
+&lt;/div&gt;</code></pre>
+
             <div class="focus">
                 <label>File</label>
                 <input type="file" class="form-control" />
             </div>
+
+			<h4 class="upper pad">File Code</h4>
+			
+<pre><code>&lt;div class="focus"&gt;
+  &lt;label>Input&lt;/label&gt;
+  &lt;input 
+    type="file" 
+    class="form-control" /&gt;
+&lt;/div&gt;</code></pre>
             
             <div class="focus">
                 <label>Date</label>
                 <input type="date" class="form-control" placeholder="Date" />
             </div>
             
+			<h4 class="upper pad">Date Code</h4>
+			
+<pre><code>&lt;div class="focus"&gt;
+  &lt;label>Input&lt;/label&gt;
+  &lt;input 
+    type="date" 
+    class="form-control"
+    placeholder="Date" /&gt;
+&lt;/div&gt;</code></pre>
+
             <div class="focus">
                 <label>Range</label>
                 <input type="range" min="5" max="20" step="5" class="form-control" />
             </div>
+
+			<h4 class="upper pad">Range Code</h4>
+			
+<pre><code>&lt;div class="focus"&gt;
+  &lt;label>Input&lt;/label&gt;
+  &lt;input 
+    type="range"
+    min="5" 
+    max="20" 
+    step="5" 
+    class="form-control" /&gt;
+&lt;/div&gt;</code></pre>
             
             <div class="focus">
                 <label>Number</label>
                 <input type="number" min="5" max="20" step="5" class="form-control" />
             </div>
             
+			<h4 class="upper pad">Number Code</h4>
+			
+<pre><code>&lt;div class="focus"&gt;
+  &lt;label>Input&lt;/label&gt;
+  &lt;input 
+    type="number"
+    min="5" 
+    max="20" 
+    step="5" 
+    class="form-control" /&gt;
+&lt;/div&gt;</code></pre>
+
             <div class="focus">
                 <label class="top">Select</label>
                 <select class="form-control">
@@ -323,12 +814,34 @@
                     <option>Option 5</option>
                 </select>
             </div>
-            
+
+            <h4 class="upper pad">Select Code</h4>
+			
+<pre><code>&lt;div class="focus"&gt;
+  &lt;label class="top">Select&lt;/label&gt;
+  &lt;select class="form-control"&gt;
+    &lt;option&gt;Option 1&lt;/option&gt;
+    &lt;option&gt;Option 2&lt;/option&gt;
+    &lt;option&gt;Option 3&lt;/option&gt;
+    &lt;option&gt;Option 4&lt;/option&gt;
+    &lt;option&gt;Option 5&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/div&gt;</code></pre>
+
             <div class="focus">
                 <label class="top">Textarea</label>
                 <textarea class="form-control" rows="3" placeholder="Enter Text"></textarea>
             </div>
-            
+			
+			<h4 class="upper pad">Textarea Code</h4>
+			
+<pre><code>&lt;div class="focus"&gt;
+  &lt;textarea 
+    class="form-control"
+    rows="3" 
+    placeholder="Enter Text"&gt;&lt;/textarea&gt;
+&lt;/div&gt;</code></pre>
+
             <h4 class="pad upper">Radio</h4>
             <div class="focus focus-group" data-do="focus-input-group">
                 <label>
@@ -349,6 +862,27 @@
                 </label>
             </div>
             
+			<h4 class="upper pad">Radio Code</h4>
+			
+<pre><code>&lt;div class="focus focus-group" data-do="focus-input-group"&gt;
+  &lt;label&gt;
+    &lt;span&gt;Choice 1&lt;/span&gt;
+    &lt;input type="radio" name="options" /&gt;
+  &lt;/label&gt;
+  &lt;label&gt;
+    &lt;span&gt;Choice 2&lt;/span&gt;
+    &lt;input type="radio" name="options" /&gt;
+  &lt;/label&gt;
+  &lt;label&gt;
+    &lt;span&gt;Choice 3&lt;/span&gt;
+    &lt;input type="radio" name="options" /&gt;
+  &lt;/label&gt;
+  &lt;label&gt;
+    &lt;span&gt;Choice 4&lt;/span&gt;
+    &lt;input type="radio" name="options" /&gt;
+  &lt;/label&gt;
+&lt;/div&gt;</code></pre>
+
             <h4 class="pad upper">Checkbox</h4>
             <div class="focus focus-group" data-do="focus-input-group">
                 <label>
@@ -368,6 +902,27 @@
                     <input type="checkbox" name="options" />
                 </label>
             </div>
+
+			<h4 class="upper pad">Checkbox Code</h4>
+			
+<pre><code>&lt;div class="focus focus-group" data-do="focus-input-group"&gt;
+  &lt;label&gt;
+    &lt;span&gt;Choice 1&lt;/span&gt;
+    &lt;input type="checkbox" name="options" /&gt;
+  &lt;/label&gt;
+  &lt;label&gt;
+    &lt;span&gt;Choice 2&lt;/span&gt;
+    &lt;input type="checkbox" name="options" /&gt;
+  &lt;/label&gt;
+  &lt;label&gt;
+    &lt;span&gt;Choice 3&lt;/span&gt;
+    &lt;input type="checkbox" name="options" /&gt;
+  &lt;/label&gt;
+  &lt;label&gt;
+    &lt;span&gt;Choice 4&lt;/span&gt;
+    &lt;input type="checkbox" name="options" /&gt;
+  &lt;/label&gt;
+&lt;/div&gt;</code></pre>
             
             <h4 class="pad upper">Switch</h4>
             <div class="focus focus-group" data-do="focus-input-group">
@@ -420,7 +975,19 @@
                         <span></span>
                     </span>
                 </label>
-            </div>        
+            </div> 
+			
+			<h4 class="upper pad">Switch Code</h4>
+			
+<pre><code>&lt;div class="focus focus-group" data-do="focus-input-group"&gt;
+  &lt;label&gt;
+    &lt;span&gt;Choice 2&lt;/span&gt;
+    &lt;span class="switch switch-2"&gt;
+      &lt;input type="checkbox" name="check" value="PH" /&gt;
+      &lt;span&gt;&lt;/span&gt;
+    &lt;/span&gt;
+  &lt;/label&gt;
+&lt;/div&gt;</code></pre>         
         </section>
     </script>
     
@@ -507,6 +1074,27 @@
                 </div>
             </div>
             
+			<h4 class="pad upper">List Example 1 - Code</h4>
+			
+<pre><code>&lt;div class="focus focus-group"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-xs-3 middle"&gt;
+      &lt;img title="Imagine Dragons" src="music/Imagine Dragons.jpg" /&gt;
+    &lt;/div&gt;
+    &lt;div class="col-xs-7"&gt;
+      &lt;h3&gt;Imagine Dragons&lt;/h3&gt;
+      &lt;em class="text-muted"&gt;Radioactive&lt;/em&gt;
+    &lt;/div&gt;
+    &lt;div class="col-xs-1 middle"&gt;
+      &lt;span class="badge"&gt;42&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="col-xs-1 middle"&gt;
+      &lt;i class="fa fa-chevron-right"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &hellip;
+&lt;/div&gt;</code></pre>
+			
             <h4 class="pad upper">List Example 2</h4>
             
             <nav class="nav-list">
@@ -583,6 +1171,27 @@
                     </div>
                 </div>
             </nav>
+			
+			<h4 class="pad upper">List Example 2 - Code</h4>
+			
+<pre><code>&lt;nav class="nav-list"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-xs-3 middle"&gt;
+      &lt;img title="Imagine Dragons" src="music/Imagine Dragons.jpg" /&gt;
+    &lt;/div&gt;
+    &lt;div class="col-xs-7"&gt;
+      &lt;h3&gt;Imagine Dragons&lt;/h3&gt;
+      &lt;em class="text-muted"&gt;Radioactive&lt;/em&gt;
+    &lt;/div&gt;
+    &lt;div class="col-xs-1 middle"&gt;
+      &lt;span class="badge"&gt;42&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="col-xs-1 middle"&gt;
+      &lt;i class="fa fa-chevron-right"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &hellip;
+&lt;/nav&gt;</code></pre>
         </section>
     </script>
     
@@ -600,6 +1209,48 @@
                 <a data-do="notify-open" data-on="click" data-message="Some Error" data-type="error">Notify - Error</a>
                 <a data-do="notify-open" data-on="click" data-message="Some Success" data-type="success">Notify - Success</a>
             </nav>
+			
+			<h4 class="upper pad">Code</h4>
+			
+<pre><code>&lt;a 
+  data-do="notify-open"  
+  data-on="click"  
+  data-message="Hello"  
+  data-type=""&gt; 
+    Notify 
+&lt;/a&gt;
+
+&lt;a 
+  data-do="notify-open"  
+  data-on="click"  
+  data-message="Some Info"  
+  data-type="info"&gt; 
+    Notify - Info 
+&lt;/a&gt;
+
+&lt;a 
+  data-do="notify-open"  
+  data-on="click"  
+  data-message="Some Warning"  
+  data-type="warning"&gt; 
+    Notify - Warning 
+&lt;/a&gt;
+
+&lt;a 
+  data-do="notify-open"  
+  data-on="click"  
+  data-message="Some Error"  
+  data-type="error"&gt; 
+    Notify - Error 
+&lt;/a&gt;
+
+&lt;a 
+  data-do="notify-open"  
+  data-on="click"  
+  data-message="Some Success"  
+  data-type="success"&gt; 
+    Notify - Success 
+&lt;/a&gt;</code></pre>
         </section>
     </script>
     
@@ -700,6 +1351,68 @@
 				data-noresults="No More Found." 
 				class="btn btn-default" 
 				disabled>Loading ...</button>
+			
+			<h4 class="upper pad pagi-wait hide">Code</h4>
+
+<pre class="pagi-wait hide"><code>&lt;div class="refresh-pull hide" data-do="refresh-pull"
+  data-pull="Pull down to refresh" 
+  data-release="Release to refresh" 
+  data-loading="Loading ..."&gt;
+  &lt;i class="fa fa-arrow-up"&gt;&lt;/i&gt;
+  &lt;span class="message"&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class="focus focus-group"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-xs-3 middle"&gt;
+      &lt;img title="Imagine Dragons" src="music/Imagine Dragons.jpg" /&gt;
+    &lt;/div&gt;
+    &lt;div class="col-xs-7"&gt;
+      &lt;h3&gt;Imagine Dragons&lt;/h3&gt;
+      &lt;em class="text-muted"&gt;Radioactive&lt;/em&gt;
+    &lt;/div&gt;
+    &lt;div class="col-xs-1 middle"&gt;
+      &lt;span class="badge"&gt;42&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="col-xs-1 middle"&gt;
+      &lt;i class="fa fa-chevron-right"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &hellip;
+&lt;/div&gt;
+
+&lt;button 
+  class="paginate" 
+  data-do="paginate" 
+  data-loading="Loading..." 
+  data-noresults="No More Found." 
+  class="btn btn-default" 
+  disabled&gt;Loading ...&lt;/button&gt;
+
+&lt;script type="text/javascript"&gt;
+//default refresh pagination
+var i = 0;
+jQuery(window).on('mobility-refresh', function(e, target, callback) {
+	var rows = $(jQuery('#refresh-template').html());
+	setTimeout(function() {
+		callback(rows[(++i) % 4]);
+	}, 1000);	
+});
+
+//default paginate pagination
+var j = 0;
+jQuery(window).on('mobility-paginate', function(e, target, callback) {
+	setTimeout(function() {
+		if(j === 5) {
+			callback();
+			return;
+		}
+		
+		callback(jQuery('#refresh-template').html());
+		j++;
+	}, 1000);	
+});
+&lt;/script&gt;</code></pre>
         </section>
     </script>
     
@@ -789,6 +1502,18 @@
 					<img src="images/couple-168191_640.jpg" />
 				</div>
 			</div>
+			
+			<h4 class="upper pad">Code</h4>
+
+<pre><code>&lt;div class="hero" data-do="hero"&gt;
+  &lt;div class="frame"&gt;
+    &lt;img src="images/africa-139343_640.jpg" /&gt;
+    &lt;img src="images/american-football-63109_640.jpg" /&gt;
+    &lt;img src="images/baby-19295_640.jpg" /&gt;
+    &lt;img src="images/baby-20339_640.jpg" /&gt;
+    &lt;img src="images/couple-168191_640.jpg" /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
         </section>
     </script>
     
@@ -841,8 +1566,9 @@
 	var j = 0;
 	jQuery(window).on('mobility-paginate', function(e, target, callback) {
 		setTimeout(function() {
-			if(j === 5) {
+			if(j === 3) {
 				callback();
+				jQuery('.pagi-wait').removeClass('hide');
 				return;
 			}
 			

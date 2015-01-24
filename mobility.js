@@ -3,7 +3,7 @@
  * CSS, and JS framework built on top of Bootstrap 
  * for developing mobile applications. 
  *
- * @version 0.0.3
+ * @version 0.0.4
  * @author Christian Blanquera <cblanquera@openovate.com>
  * @website https://github.com/cblanquera/mobility
  * @license MIT
@@ -97,7 +97,7 @@
 					}
 				});
 			});
-		})
+		});
 	}).on('tab-switch-click', function(e) {
 		e.preventDefault();
 		e.originalEvent.stop = true;
@@ -418,37 +418,7 @@
 		var initialize = function() {
 			var index = 0;
 			
-			//need swiping feature
-			var touched = 0;
-			container.on('mousedown touchstart', function(e) {
-				if(!e.originalEvent.touches) {
-					touched = e.pageX;
-					return;
-				}
-				
-				touched = e.originalEvent.touches[0].pageX;
-			});
-			
-			container.on('mousemove touchmove', function(e) {
-				e.preventDefault();
-			});
-			
-			container.on('mouseup touchend touchcancel', function(e) {
-				var end;
-				if(!e.originalEvent.changedTouches) {
-					end = e.pageX - touched;
-				} else {
-					end = e.originalEvent.changedTouches[0].pageX - touched;
-				}
-				
-				
-				
-				if(end < 0) {
-					container.trigger('swipe-left');
-				} else if(0 < end) {
-					container.trigger('swipe-right');
-				}
-			});
+			$.mobility.swipe(container);
 			
 			container.on('swipe-left', function(e) {
 				var next = $('img', container).eq(++index);
@@ -487,6 +457,151 @@
 		}
 		
 		initialize();
+	}).on('aside-left-init', function(e, container) {
+		if(!$(container).hasClass('aside-left')) {
+			return;
+		}
+		
+		container = $(container).parent().on('webkitTransitionEnd', function() {
+			$.mobility.busy = false;
+			container.removeClass('aside-return');
+		});
+		
+		var initialize = function() {
+			$.mobility.swipe(container);
+			
+			container.on('swipe-right', function(e) {
+				if(container.hasClass('aside-slide-left')
+				|| container.hasClass('aside-slide-right')
+				|| container.hasClass('aside-return')
+				|| $.mobility.busy) {
+					return;
+				}
+				
+				$.mobility.busy = true;
+				
+				container.addClass('aside-slide-right');
+				
+				return;
+			}).on('swipe-left', function(e) {
+				if(!container.hasClass('aside-slide-right')
+				|| container.hasClass('aside-return')
+				|| $.mobility.busy) {
+					return;
+				}
+				
+				$.mobility.busy = true;
+				
+				container
+					.removeClass('aside-slide-right')
+					.addClass('aside-return');
+				
+				return;
+			});
+		};
+		
+		if($.mobility.busy) {
+			$(window).on('mobility-swap-complete', initialize);
+			return;
+		}
+		
+		initialize();
+	}).on('aside-right-init', function(e, container) {
+		if(!$(container).hasClass('aside-right')) {
+			return;
+		}
+		
+		container = $(container).parent().on('webkitTransitionEnd', function() {
+			$.mobility.busy = false;
+			container.removeClass('aside-return');
+		});
+		
+		var initialize = function() {
+			$.mobility.swipe(container);
+			
+			container.on('swipe-left', function(e) {
+				if(container.hasClass('aside-slide-left')
+				|| container.hasClass('aside-slide-right')
+				|| container.hasClass('aside-return')
+				|| $.mobility.busy) {
+					return;
+				}
+				
+				$.mobility.busy = true;
+				container.addClass('aside-slide-left');
+				
+				return;
+			}).on('swipe-right', function(e) {
+				if(!container.hasClass('aside-slide-left')
+				|| container.hasClass('aside-return')
+				|| $.mobility.busy) {
+					return;
+				}
+				
+				$.mobility.busy = true;
+				
+				container
+					.removeClass('aside-slide-left')
+					.addClass('aside-return');
+				
+				return;
+			});
+		};
+		
+		if($.mobility.busy) {
+			$(window).on('mobility-swap-complete', initialize);
+			return;
+		}
+		
+		initialize();
+	}).on('aside-left-click', function(e, container) {
+		e.preventDefault();
+		e.originalEvent.stop = true;
+		
+		var trigger = getTrigger('aside-left-click', e.target);
+        var target = getTarget(trigger);
+		
+		try {
+            if($(target).length) {
+				if($(target).parent().hasClass('aside-slide-right')) {
+					$(target).parent()
+						.removeClass('aside-slide-right')
+						.addClass('aside-return');
+					
+					return;
+				}
+				
+				$(target).parent()
+					.removeClass('aside-return')
+					.addClass('aside-slide-right');
+				
+				return;
+            }
+        } catch(e) {}
+	}).on('aside-right-click', function(e, container) {
+		e.preventDefault();
+		e.originalEvent.stop = true;
+		
+		var trigger = getTrigger('aside-right-click', e.target);
+        var target = getTarget(trigger);
+		
+		try {
+            if($(target).length) {
+				if($(target).parent().hasClass('aside-slide-left')) {
+					$(target).parent()
+						.removeClass('aside-slide-left')
+						.addClass('aside-return');
+					
+					return;
+				}
+				
+				$(target).parent()
+					.removeClass('aside-return')
+					.addClass('aside-slide-left');
+				
+				return;
+            }
+        } catch(e) {}
 	});
 	
 	var getTrigger = function(event, target) {
@@ -718,6 +833,49 @@
 						break;
 						
 				}
+			},
+			
+			swipe: function(container) {
+				//make sure its jQuery
+				container = $(container);
+				
+				//if there is a listener setup
+				if(container.data('swipe-handler')) {
+					//dont continue
+					return;
+				}
+				
+				container.data('swipe-handler', true);
+				
+				//need swiping feature
+				var touched = 0;
+				container.on('mousedown touchstart', function(e) {
+					if(!e.originalEvent.touches) {
+						touched = e.pageX;
+						return;
+					}
+					
+					touched = e.originalEvent.touches[0].pageX;
+				});
+				
+				container.on('mousemove touchmove', function(e) {
+					e.preventDefault();
+				});
+				
+				container.on('mouseup touchend touchcancel', function(e) {
+					var end;
+					if(!e.originalEvent.changedTouches) {
+						end = e.pageX - touched;
+					} else {
+						end = e.originalEvent.changedTouches[0].pageX - touched;
+					}
+					
+					if(end < 0) {
+						container.trigger('swipe-left');
+					} else if(0 < end) {
+						container.trigger('swipe-right');
+					}
+				});
 			},
 			
 			start: function() {

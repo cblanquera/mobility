@@ -3,7 +3,7 @@
  * CSS, and JS framework built on top of Bootstrap 
  * for developing mobile applications. 
  *
- * @version 0.0.1
+ * @version 0.0.4
  * @author Christian Blanquera <cblanquera@openovate.com>
  * @website https://github.com/cblanquera/mobility
  * @license MIT
@@ -226,6 +226,77 @@ form .btn {
 	font-size: 11px;
 }
 
+/* Asides
+-------------------------------*/
+.aside h1,
+.aside h2,
+.aside h3,
+.aside h4,
+.aside h5,
+.aside h6,
+.aside p {
+	color: #EFEFEF;
+}
+
+.aside {
+	background: #222222;
+	bottom: 0;
+	width: 212px;
+	position: absolute;
+	top: 0;
+	z-index: 20;
+}
+
+.aside-left { 
+	-webkit-transform: translate3d(-100%, 0, 0);
+		-ms-transform: translate3d(-100%, 0, 0);
+			transform: translate3d(-100%, 0, 0);
+	left: 0; 
+}
+
+.aside-right { 
+	-webkit-transform: translate3d(100%, 0, 0);
+		-ms-transform: translate3d(100%, 0, 0);
+			transform: translate3d(100%, 0, 0);
+	right: 0; 
+}
+
+.aside-slide-right {
+	-webkit-transition: -webkit-transform .4s;
+	   -moz-transition:    -moz-transform .4s;
+			transition:         transform .4s;
+	
+	-webkit-transform: translate3d(212px, 0, 0);
+	  	-ms-transform: translate3d(212px, 0, 0);
+		    transform: translate3d(212px, 0, 0);
+	
+	overflow: visible;
+}
+
+.aside-return {
+	-webkit-transition: -webkit-transform .4s;
+	   -moz-transition:    -moz-transform .4s;
+			transition:         transform .4s;
+	
+	-webkit-transform: translate3d(0, 0, 0);
+	  	-ms-transform: translate3d(0, 0, 0);
+		    transform: translate3d(0, 0, 0);
+
+	overflow: visible;
+}
+
+
+.aside-slide-left {
+	-webkit-transition: -webkit-transform .4s;
+	   -moz-transition:    -moz-transform .4s;
+			transition:         transform .4s;
+	
+	-webkit-transform: translate3d(-212px, 0, 0);
+	  	-ms-transform: translate3d(-212px, 0, 0);
+		    transform: translate3d(-212px, 0, 0);
+	
+	overflow: visible;
+}
 
 /* Focus
 -------------------------------*/
