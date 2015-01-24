@@ -468,7 +468,7 @@
 		});
 		
 		var initialize = function() {
-			$.mobility.swipe(container, 50);
+			$.mobility.swipe(container, 20);
 			
 			container.on('swipe-right', function(e) {
 				if(container.hasClass('aside-slide-left')
@@ -517,7 +517,7 @@
 		});
 		
 		var initialize = function() {
-			$.mobility.swipe(container, 50);
+			$.mobility.swipe(container, 20);
 			
 			container.on('swipe-left', function(e) {
 				if(container.hasClass('aside-slide-left')
