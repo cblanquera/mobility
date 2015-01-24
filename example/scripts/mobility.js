@@ -3,7 +3,7 @@
  * CSS, and JS framework built on top of Bootstrap 
  * for developing mobile applications. 
  *
- * @version 0.0.2
+ * @version 0.0.3
  * @author Christian Blanquera <cblanquera@openovate.com>
  * @website https://github.com/cblanquera/mobility
  * @license MIT
@@ -14,15 +14,16 @@
 
         var trigger = getTrigger('go-back-click', e.target);
         var target = getTarget(trigger);
-
-        try {
+		
+		try {
             if($(target).length && $(target).html()) {
                 $.mobility.swap($(target).html(), 'slide-right');
                 e.originalEvent.stop = true;
+				return;
             }
         } catch(e) {}
-
-        $(window).trigger('mobility-request', [target, 'slide-right']);
+		
+		$(window).trigger('mobility-request', [target, 'slide-right']);
     }).on('go-forward-click', function(e) {
         e.preventDefault();
 
@@ -33,11 +34,57 @@
             if($(target).length && $(target).html()) {
                 $.mobility.swap($(target).html(), 'slide-left');
                 e.originalEvent.stop = true;
+				return;
             }
         } catch(e) {}
 
         $(window).trigger('mobility-request', [target, 'slide-left']);
-	}).on('focus-input-group-init', function(e, trigger) {
+	}).on('go-previous-click', function(e) {
+        e.preventDefault();
+
+        var trigger = getTrigger('go-previous-click', e.target);
+        var target = getTarget(trigger);
+
+        try {
+            if($(target).length && $(target).html()) {
+                $.mobility.swap($(target).html(), 'slide-up');
+                e.originalEvent.stop = true;
+				return;
+            }
+        } catch(e) {}
+
+        $(window).trigger('mobility-request', [target, 'slide-up']);
+    }).on('go-next-click', function(e) {
+        e.preventDefault();
+
+        var trigger = getTrigger('go-next-click', e.target);
+        var target = getTarget(trigger);
+
+        try {
+            if($(target).length && $(target).html()) {
+                $.mobility.swap($(target).html(), 'slide-down');
+                e.originalEvent.stop = true;
+				return;
+            }
+        } catch(e) {}
+
+        $(window).trigger('mobility-request', [target, 'slide-down']);
+    }).on('go-fade-click', function(e) {
+        e.preventDefault();
+
+        var trigger = getTrigger('go-fade-click', e.target);
+        var target = getTarget(trigger);
+
+        try {
+            if($(target).length && $(target).html()) {
+                $.mobility.swap($(target).html(), 'fade');
+                e.originalEvent.stop = true;
+				return;
+            }
+        } catch(e) {}
+
+        $(window).trigger('mobility-request', [target, 'fade']);
+    }).on('focus-input-group-init', function(e, trigger) {
 		trigger = $(trigger);
 		
 		trigger.find('label').each(function() {
@@ -497,7 +544,6 @@
 	'<div id="notify-{UID}" class="notify{TYPE}"><a data-do="notify-close" '
 	+ 'data-on="click" href="#notify-{UID}"><i class="fa fa-times"></i></a><span '
 	+ 'class="message">{MESSAGE}</span></div>';
-	
 	
 	$.extend({
 		mobility: {

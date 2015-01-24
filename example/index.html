@@ -17,43 +17,10 @@
 	<script type="text/javascript" src="scripts/jquery.js"></script>
 	<script type="text/javascript" src="scripts/doon.js"></script>
     <script type="text/javascript" src="scripts/mobility.js"></script>
+    <script type="text/javascript" src="scripts/acquire.js"></script>
 </head>
 <body>
-	<section class="screen current">
-        <header class="head">
-            <a class="head-btn btn btn-default pull-left" data-do="go-back" data-on="click" href="#home">Back</a>
-            <a class="head-btn btn btn-default pull-right" data-do="modal-open" data-on="click" href="#modal">Open</a>
-            <h1 class="title">
-                <a data-do="popover-open" data-on="click" href="#popover">Demo <i class="fa fa-caret-down"></i></a>
-            </h1>
-        </header>
-        
-        <section class="body with-head with-foot">
-            <h4 class="pad upper">Mobility UI</h4>
-            <div class="focus">
-            	<p>Mobility is a super light weight HTML, CSS, and JS framework
-                built on top of Bootstrap for developing mobile applications. 
-                Tried and tested on PhoneGap</p>
-                
-            </div>
-            
-            <nav class="nav-list">
-                <a href="#">Download <i class="fa fa-external-link"></i></a>
-                <a href="#">Github <i class="fa fa-external-link"></i></a>
-            </nav>
-            
-            <h4 class="pad upper">Demo</h4>
-            <nav class="nav-list">
-                <a data-do="go-forward" data-on="click" href="#typography">Typography <i class="fa fa-plus"></i></a>
-                <a data-do="go-forward" data-on="click" href="#tabs">Tabs <i class="fa fa-edit"></i></a>
-                <a data-do="go-forward" data-on="click" href="#fields">Fields <i class="fa fa-chevron-right"></i><span class="badge">42</span></a>
-                <a data-do="go-forward" data-on="click" href="#list">List <i class="fa fa-chevron-right"></i></a>
-            	<a data-do="go-forward" data-on="click" href="#refresh">Refresh <i class="fa fa-chevron-right"></i></a>
-                <a data-do="go-forward" data-on="click" href="#notify">Notify <i class="fa fa-chevron-right"></i></a>
-                <a data-do="go-forward" data-on="click" href="#hero">Hero <i class="fa fa-chevron-right"></i></a>
-            </nav>
-        </section>
-    </section>
+	<section class="screen current"></section>
     
     <footer class="foot">
         <nav class="foot-nav" data-do="foot-nav">
@@ -181,6 +148,7 @@
         </header>
         
         <section class="body with-head with-foot">
+			<h4 class="pad upper">Mobility UI</h4>
             <div class="focus">
             	<p>Mobility is a super light weight HTML, CSS, and JS framework
                 built on top of Bootstrap for developing mobile applications. 
@@ -196,6 +164,7 @@
             <h4 class="pad upper">Demo</h4>
             <nav class="nav-list">
                 <a data-do="go-forward" data-on="click" href="#typography">Typography <i class="fa fa-plus"></i></a>
+				<a data-do="go-forward" data-on="click" href="#transition">Transitions <i class="fa fa-chevron-right"></i></a>
                 <a data-do="go-forward" data-on="click" href="#tabs">Tabs <i class="fa fa-edit"></i></a>
                 <a data-do="go-forward" data-on="click" href="#fields">Fields <i class="fa fa-chevron-right"></i><span class="badge">42</span></a>
                 <a data-do="go-forward" data-on="click" href="#list">List <i class="fa fa-chevron-right"></i></a>
@@ -229,6 +198,31 @@
             <p class="pad">Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta 
             gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget 
             lacinia odio sem nec elit.</p>
+        </section>
+    </script>
+    
+    <script id="transition" type="text/html">
+        <header class="head">
+            <a class="head-btn btn btn-default pull-left" data-do="go-back" data-on="click" href="#home">Back</a>
+            
+            <h1 class="title">Demo - Transitions</h1>
+        </header>
+        
+        <section class="body with-head with-foot">
+			<nav class="nav-list">
+				<a data-do="go-forward" data-on="click" href="#transition">Forward <i class="fa fa-chevron-right"></i></a>
+				
+				<a data-do="go-back" data-on="click" href="#transition">Back <i class="fa fa-chevron-right"></i></a>
+				
+				<a data-do="go-previous" data-on="click" href="#transition">Previous <i class="fa fa-chevron-right"></i></a>
+				
+				<a data-do="go-next" data-on="click" href="#transition">Next <i class="fa fa-chevron-right"></i></a>
+				
+				<a data-do="go-fade" data-on="click" href="#home">Fade <i class="fa fa-chevron-right"></i></a>
+				
+				<a data-do="go-forward" data-on="click" href="/remote">Remote <i class="fa fa-chevron-right"></i></a>
+				<a data-do="go-forward" data-on="click" href="/acquire">With Acquire <i class="fa fa-chevron-right"></i></a>
+            </nav>
         </section>
     </script>
     
@@ -799,10 +793,42 @@
     </script>
     
     <script type="text/javascript">
+	//initialize
 	jQuery.mobility.start();
 	
-    var i = 0;
+	//add header and footer spacing
+	jQuery(window).trigger('mobility-swap-complete', function() {
+		jQuery('section.screen.current').addClass('with-head with-foot');
+	});
 	
+	//now load the home page
+	jQuery.mobility.swap(jQuery('#home').html());
+	
+	//remote transition are pluggable in this manner
+	jQuery(window).on('mobility-request', function(e, target, effect) {
+		jQuery(window).one('mobility-swap-complete', function() {
+			var current = jQuery('section.screen.current').addClass('loading');
+			
+			//remote call yes? lets use acquire!
+			if(target === '/acquire') {
+				require('/template.html', function(html) {
+					jQuery.mobility.swap(html);
+				});
+				
+				return;
+			}
+			
+			//Probably do Ajax instead of this
+			setTimeout(function() {
+				jQuery.mobility.swap(jQuery('#transition').html());
+			}, 5000);
+		});
+		
+		jQuery.mobility.swap('', 'slide-left');
+	});
+	
+	//default refresh pagination
+    var i = 0;
 	jQuery(window).on('mobility-refresh', function(e, target, callback) {
 		var rows = $(jQuery('#refresh-template').html());
 		setTimeout(function() {
@@ -810,6 +836,8 @@
 		}, 1000);	
 	});
 	
+	
+	//default paginate pagination
 	var j = 0;
 	jQuery(window).on('mobility-paginate', function(e, target, callback) {
 		setTimeout(function() {
