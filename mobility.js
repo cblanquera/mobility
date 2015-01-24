@@ -3,40 +3,40 @@
  * CSS, and JS framework built on top of Bootstrap 
  * for developing mobile applications. 
  *
- * @version 0.0.1
+ * @version 0.0.2
  * @author Christian Blanquera <cblanquera@openovate.com>
  * @website https://github.com/cblanquera/mobility
  * @license MIT
  */
 (function($) {
 	$(window).on('go-back-click', function(e) {
-		e.preventDefault();
-		e.originalEvent.stop = true;
-		
-		var trigger = getTrigger('go-back-click', e.target);
-		var target = getTarget(trigger);
-		
-		try {
-			if($(target).length && $(target).html()) {
-				$.mobility.swap($(target).html(), 'slide-right');
-			}
-		} catch(e) {}
-		
-		$(window).trigger('mobility-request', [target, 'slide-right']);
-	}).on('go-forward-click', function(e) {
-		e.preventDefault();
-		e.originalEvent.stop = true;
-		
-		var trigger = getTrigger('go-back-click', e.target);
-		var target = getTarget(trigger);
-		
-		try {
-			if($(target).length && $(target).html()) {
-				$.mobility.swap($(target).html(), 'slide-left');
-			}
-		} catch(e) {}
-		
-		$(window).trigger('mobility-request', [target, 'slide-left']);
+        e.preventDefault();
+
+        var trigger = getTrigger('go-back-click', e.target);
+        var target = getTarget(trigger);
+
+        try {
+            if($(target).length && $(target).html()) {
+                $.mobility.swap($(target).html(), 'slide-right');
+                e.originalEvent.stop = true;
+            }
+        } catch(e) {}
+
+        $(window).trigger('mobility-request', [target, 'slide-right']);
+    }).on('go-forward-click', function(e) {
+        e.preventDefault();
+
+        var trigger = getTrigger('go-back-click', e.target);
+        var target = getTarget(trigger);
+
+        try {
+            if($(target).length && $(target).html()) {
+                $.mobility.swap($(target).html(), 'slide-left');
+                e.originalEvent.stop = true;
+            }
+        } catch(e) {}
+
+        $(window).trigger('mobility-request', [target, 'slide-left']);
 	}).on('focus-input-group-init', function(e, trigger) {
 		trigger = $(trigger);
 		
