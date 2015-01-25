@@ -139,6 +139,7 @@
     </div>
     
     <aside id="aside-left" class="aside aside-left">
+    	<a class="btn btn-default pull-right" data-do="aside-left" data-on="click" href="#aside-left"><i class="fa fa-chevron-left"></i></a>
         <h2 class="pad">Mobility</h2>
         <nav class="nav-list">
             <a data-do="go-forward" data-on="click" href="#basics">Basics <i class="fa fa-chevron-right"></i></a>
@@ -172,12 +173,26 @@
                 
             </div>
             
+			<h4 class="pad upper">Externals</h4>
+			
             <nav class="nav-list">
-                <a href="#">Download <i class="fa fa-external-link"></i></a>
-                <a href="#">Github <i class="fa fa-external-link"></i></a>
+                <a href="https://github.com/cblanquera/mobility/archive/master.tar.gz">Download <i class="fa fa-external-link"></i></a>
+                <a href="https://github.com/cblanquera/mobility">Github <i class="fa fa-external-link"></i></a>
             </nav>
             
+			<h4 class="pad upper">Themes</h4>
+			
+			<nav class="themes nav-list">
+                <a href="javascript:void(0)">Blue</a>
+                <a href="javascript:void(0)">Green</a>
+                <a href="javascript:void(0)">Orange</a>
+                <a href="javascript:void(0)">Pink</a>
+                <a href="javascript:void(0)">Purple</a>
+                <a href="javascript:void(0)">Red</a>
+            </nav>
+			
             <h4 class="pad upper">Demo</h4>
+			
             <nav class="nav-list">
                 <a data-do="go-forward" data-on="click" href="#basics">Basics <i class="fa fa-chevron-right"></i></a>
             	<a data-do="go-forward" data-on="click" href="#typography">Typography <i class="fa fa-plus"></i></a>
@@ -1558,6 +1573,16 @@ jQuery(window).on('mobility-paginate', function(e, target, callback) {
 			callback(jQuery('#refresh-template').html());
 			j++;
 		}, 1000);	
+	});
+	
+	jQuery('nav.themes a').click(function(e) {
+		e.preventDefault();
+		var color = this.innerHTML.toLowerCase();
+		jQuery('<link />').attr({
+			rel: 'stylesheet', 
+			type: 'text/css',
+			href: 'styles/mobility-'+color+'.css' })
+		.appendTo('head');
 	});
     </script>
 </body>
