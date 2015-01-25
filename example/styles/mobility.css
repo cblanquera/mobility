@@ -3,7 +3,7 @@
  * CSS, and JS framework built on top of Bootstrap 
  * for developing mobile applications. 
  *
- * @version 0.0.4
+ * @version 0.0.5
  * @author Christian Blanquera <cblanquera@openovate.com>
  * @website https://github.com/cblanquera/mobility
  * @license MIT
@@ -228,6 +228,16 @@ form .btn {
 
 /* Asides
 -------------------------------*/
+.aside {
+	background: #222222;
+	bottom: 0;
+	width: 212px;
+	position: absolute;
+	top: 0;
+	z-index: 20;
+	display: none;
+}
+
 .aside h1,
 .aside h2,
 .aside h3,
@@ -238,14 +248,18 @@ form .btn {
 	color: #EFEFEF;
 }
 
-.aside {
-	background: #222222;
-	bottom: 0;
-	width: 212px;
-	position: absolute;
-	top: 0;
-	z-index: 20;
-	display: none;
+.aside .btn.pull-left,
+.aside .btn.pull-right {
+	background-color: #222222;
+	border-color: #222222;
+	color: #FFFFFF;
+	margin-top: 5px;
+}
+
+.aside h2 { 
+	font-size: 20px; 
+	font-weight: 500;
+	text-transform: uppercase;
 }
 
 .aside-left { 
