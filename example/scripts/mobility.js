@@ -3,7 +3,7 @@
  * CSS, and JS framework built on top of Bootstrap 
  * for developing mobile applications. 
  *
- * @version 0.0.5
+ * @version 0.0.7
  * @author Christian Blanquera <cblanquera@openovate.com>
  * @website https://github.com/cblanquera/mobility
  * @license MIT
@@ -27,7 +27,7 @@
     }).on('go-forward-click', function(e) {
         e.preventDefault();
 
-        var trigger = getTrigger('go-back-click', e.target);
+        var trigger = getTrigger('go-forward-click', e.target);
         var target = getTarget(trigger);
 
         try {
@@ -280,14 +280,18 @@
 				
 				//there is HTML
 				if(typeof html !== 'boolean') {
+					html = $(html);
+					
 					//add loading message
 					//and add the HTML
 					message
 					.html(message.attr('data-loading'))
 					.prev()
-					.append($(html)
+					.append(html
 					.css('opacity', 0)
 					.animate({opacity: 1}));
+					
+					html.doon();
 				}
 			}]);
 		};
@@ -367,11 +371,15 @@
 				$(window).trigger('mobility-refresh', [target, function(html) {
 					//if HTML was returned
 					if(html) {
+						html = $(html);
+						
 						//prepend it in
 						wizard.next()
-							.prepend($(html)
+							.prepend(html
 							.css('opacity', 0)
 							.animate({opacity: 1}));
+						
+						html.doon();
 					}
 					
 					//reset the wizard styles
@@ -640,7 +648,7 @@
 			
 			events.unshift('init');
 			
-			for(i = 0; i < events.length; i++) {
+			for(var i = 0; i < events.length; i++) {
 				if((subject + '-' + events[i]) === event) {
 					trigger = $(this);
 					return false;
@@ -653,7 +661,6 @@
 	
 	var getTarget = function(trigger) {
 		trigger = $(trigger);
-		
 		var target = trigger.attr('data-target');
 		
 		if(!target || !target.length) {

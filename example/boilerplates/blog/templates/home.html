@@ -1,0 +1,146 @@
+<header class="head">
+    <a 
+        class="head-btn btn btn-default pull-left" 
+        data-do="modal-open" 
+        data-on="click" 
+        href="#settings">
+            <i class="fa fa-cog"></i>
+    </a>
+    <a 
+        class="head-btn btn btn-default pull-right search-trigger" 
+        href="javascript:void(0)">
+            <i class="fa fa-search"></i>
+    </a>
+    <h1 class="title">
+    	<input class="search-field hide" />
+        <a 
+            data-do="popover-open" 
+            data-on="click" 
+            href="#popover">
+                All Stories 
+                <i class="fa fa-caret-down"></i>
+        </a>
+    </h1>
+</header>
+
+<section class="body with-head loading">
+    <nav id="home-tabs" class="tabs">
+        <a 
+            class="active" 
+            data-do="tab-switch" 
+            data-on="click" 
+            href="#hot">
+                Hot
+        </a>
+        <a 
+            data-do="tab-switch" 
+            data-on="click" 
+            href="#rising">
+                Rising
+        </a>
+        <a 
+            data-do="tab-switch" 
+            data-on="click" 
+            href="#new">
+                New
+        </a>
+    </nav>
+    
+    <div id="hot" class="posts hide">
+        <div class="refresh-pull hide" data-do="refresh-pull"
+            data-pull="Pull down to refresh" 
+            data-release="Release to refresh" 
+            data-loading="Loading ...">
+            <i class="fa fa-arrow-up"></i>
+            <span class="message"></span>
+        </div>
+        
+        <div class="list"></div>
+        
+        <button 
+            class="paginate" 
+            data-do="paginate" 
+            data-loading="Loading..." 
+            data-noresults="No More Found." 
+            class="btn btn-default" 
+            disabled>Loading ...</button>
+    </div>
+    <div id="rising" class="posts hide">
+        <div class="refresh-pull hide" data-do="refresh-pull"
+            data-pull="Pull down to refresh" 
+            data-release="Release to refresh" 
+            data-loading="Loading ...">
+            <i class="fa fa-arrow-up"></i>
+            <span class="message"></span>
+        </div>
+        
+        <div class="list"></div>
+        
+        <button 
+            class="paginate" 
+            data-do="paginate" 
+            data-loading="Loading..." 
+            data-noresults="No More Found." 
+            class="btn btn-default" 
+            disabled>Loading ...</button>
+    </div>
+    <div id="new" class="posts hide">
+        <div class="refresh-pull hide" data-do="refresh-pull"
+            data-pull="Pull down to refresh" 
+            data-release="Release to refresh" 
+            data-loading="Loading ...">
+            <i class="fa fa-arrow-up"></i>
+            <span class="message"></span>
+        </div>
+        
+        <div class="list"></div>
+        
+        <button 
+            class="paginate" 
+            data-do="paginate" 
+            data-loading="Loading..." 
+            data-noresults="No More Found." 
+            class="btn btn-default" 
+            disabled>Loading ...</button>
+    </div>
+</section>
+
+<div id="settings" class="modal hide">
+    <header class="head">
+        <a class="head-link pull-right" href="#settings" data-do="modal-close" data-on="click">
+            <i class="fa fa-times"></i>
+        </a>
+        <h1 class="title">Settings</h1>
+    </header>
+
+    <section class="body with-head">
+        <div class="row pad">
+            <div class="col-md-12">
+                <div class="focus">
+                    <label>Name</label>
+                    <input type="text" class="form-control" placeholder="Text input" value="Hiro Nakaturo" />
+                </div>
+                <div class="focus">
+                    <label>Password</label>
+                    <input type="password" class="form-control" placeholder="Enter Text" />
+                </div>
+                
+                <h4 class="pad upper">Status</h4>
+                <div class="focus focus-group" data-do="focus-input-group">
+                    <label>
+                        <span>Visible</span>
+                        <input type="radio" name="options" />
+                    </label>
+                    <label>
+                        <span>Hidden</span>
+                        <input type="radio" name="options" />
+                    </label>
+                    <label>
+                        <span>Busy</span>
+                        <input type="radio" name="options" />
+                    </label>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
