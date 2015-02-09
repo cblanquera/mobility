@@ -57,8 +57,8 @@
     <script type="text/javascript">
 	//remote transition are pluggable in this manner
 	var remoteHistory = ['/'];
-	jQuery(window).on('mobility-request', function(e, target, effect) {
-		jQuery(window).one('mobility-swap-complete', function() {
+	jQuery(window).on('/mobility-request', function(e, target, effect) {
+		jQuery(window).one('/mobility-swap-complete', function() {
 			var current = jQuery('section.screen.current').addClass('loading');
 			
 			//history
@@ -78,12 +78,12 @@
 			//router
 			switch(true) {
 				case target === '/':
-					require('/boilerplates/ecommerce/templates/home.html', function(html) {
+					require('/mobility/boilerplates/ecommerce/templates/home.html', function(html) {
 						jQuery.mobility.swap(html);
 						
 						require([
-						'/boilerplates/ecommerce/server/products.js', 
-						'/boilerplates/ecommerce/templates/row.html'], 
+						'/mobility/boilerplates/ecommerce/server/products.js', 
+						'/mobility/boilerplates/ecommerce/templates/row.html'], 
 						function(response, template) {
 							jQuery('section.body').removeClass('loading');
 							
@@ -116,8 +116,8 @@
 					break;
 				case target.indexOf('/detail') === 0:
 					require([
-						'/boilerplates/ecommerce/server'+target+'.js', 
-						'/boilerplates/ecommerce/templates/detail.html'], 
+						'/mobility/boilerplates/ecommerce/server'+target+'.js', 
+						'/mobility/boilerplates/ecommerce/templates/detail.html'], 
 					function(response, template) {
 						jQuery.mobility.swap(jQuery(Handlebars.compile(template)(response.results)));
 						jQuery('header a.search-trigger').click(function() {
@@ -147,10 +147,10 @@
 	
 	//default refresh pagination
     var i = 0;
-	jQuery(window).on('mobility-refresh', function(e, target, callback) {
+	jQuery(window).on('/mobility-refresh', function(e, target, callback) {
 		require([
-		'/boilerplates/ecommerce/server/products.js', 
-		'/boilerplates/ecommerce/templates/row.html'], 
+		'/mobility/boilerplates/ecommerce/server/products.js', 
+		'/mobility/boilerplates/ecommerce/templates/row.html'], 
 		function(response, template) {
 			var row = Handlebars.compile(template)(response.results[(++i) % 4]);
 			
@@ -161,7 +161,7 @@
 	
 	//default paginate pagination
 	var j = 0;
-	jQuery(window).on('mobility-paginate', function(e, target, callback) {
+	jQuery(window).on('/mobility-paginate', function(e, target, callback) {
 		setTimeout(function() {
 			if(j === 3) {
 				callback();
@@ -169,8 +169,8 @@
 			}
 			
 			require([
-			'/boilerplates/ecommerce/server/products.js', 
-			'/boilerplates/ecommerce/templates/row.html'], 
+			'/mobility/boilerplates/ecommerce/server/products.js', 
+			'/mobility/boilerplates/ecommerce/templates/row.html'], 
 			function(response, template) {
 				var row = Handlebars.compile(template)(response.results[(++i) % 4]);
 				
@@ -188,7 +188,7 @@
 	//initialize
 	jQuery.mobility.start();
 	
-	jQuery(window).trigger('mobility-request', '/');
+	jQuery(window).trigger('/mobility-request', '/');
 	
     </script>
 </body>

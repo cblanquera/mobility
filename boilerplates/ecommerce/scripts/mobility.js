@@ -23,7 +23,7 @@
             }
         } catch(e) {}
 		
-		$(window).trigger('mobility-request', [target, 'slide-right']);
+		$(window).trigger('/mobility-request', [target, 'slide-right']);
     }).on('go-forward-click', function(e) {
         e.preventDefault();
 
@@ -38,7 +38,7 @@
             }
         } catch(e) {}
 
-        $(window).trigger('mobility-request', [target, 'slide-left']);
+        $(window).trigger('/mobility-request', [target, 'slide-left']);
 	}).on('go-previous-click', function(e) {
         e.preventDefault();
 
@@ -53,7 +53,7 @@
             }
         } catch(e) {}
 
-        $(window).trigger('mobility-request', [target, 'slide-up']);
+        $(window).trigger('/mobility-request', [target, 'slide-up']);
     }).on('go-next-click', function(e) {
         e.preventDefault();
 
@@ -68,7 +68,7 @@
             }
         } catch(e) {}
 
-        $(window).trigger('mobility-request', [target, 'slide-down']);
+        $(window).trigger('/mobility-request', [target, 'slide-down']);
     }).on('go-fade-click', function(e) {
         e.preventDefault();
 
@@ -83,7 +83,7 @@
             }
         } catch(e) {}
 
-        $(window).trigger('mobility-request', [target, 'fade']);
+        $(window).trigger('/mobility-request', [target, 'fade']);
     }).on('focus-input-group-init', function(e, trigger) {
 		trigger = $(trigger);
 		
@@ -261,7 +261,7 @@
 			$.mobility.busy = true;
 			
 			//allow API listeners
-			$(window).trigger('mobility-paginate', [target, function(html) {
+			$(window).trigger('/mobility-paginate', [target, function(html) {
 				//okay we are not busy anymore
 				$.mobility.busy = false;
 				
@@ -368,7 +368,7 @@
 			//adjust the wizard height for effect
 			wizard.animate({paddingTop: 0, height: 50}, 'fast', function() {
 				//allow API listener
-				$(window).trigger('mobility-refresh', [target, function(html) {
+				$(window).trigger('/mobility-refresh', [target, function(html) {
 					//if HTML was returned
 					if(html) {
 						html = $(html);
@@ -416,7 +416,7 @@
 		};
 		
 		if($.mobility.busy) { 
-			$(window).one('mobility-swap-complete', initialize);
+			$(window).one('/mobility-swap-complete', initialize);
 		} else {
 			initialize();
 		}
@@ -460,7 +460,7 @@
 		};
 		
 		if($.mobility.busy) {
-			$(window).on('mobility-swap-complete', initialize);
+			$(window).on('/mobility-swap-complete', initialize);
 			return;
 		}
 		
@@ -509,7 +509,7 @@
 		};
 		
 		if($.mobility.busy) {
-			$(window).on('mobility-swap-complete', initialize);
+			$(window).on('/mobility-swap-complete', initialize);
 			return;
 		}
 		
@@ -557,7 +557,7 @@
 		};
 		
 		if($.mobility.busy) {
-			$(window).on('mobility-swap-complete', initialize);
+			$(window).on('/mobility-swap-complete', initialize);
 			return;
 		}
 		
@@ -740,14 +740,14 @@
 					current.remove();
 					
 					$.mobility.busy = false;
-					$(window).trigger('mobility-swap-complete');
+					$(window).trigger('/mobility-swap-complete');
 				};
 				
 				var fadeEnd = function () {
 					current.remove();
 					
 					$.mobility.busy = false;
-					$(window).trigger('mobility-swap-complete');
+					$(window).trigger('/mobility-swap-complete');
 				};
 				
 				switch(effect) {
@@ -844,7 +844,7 @@
 						current.remove();
 						
 						$.mobility.busy = false;
-						$(window).trigger('mobility-swap-complete');
+						$(window).trigger('/mobility-swap-complete');
 						break;
 						
 				}
