@@ -1,0 +1,104 @@
+/* General
+-------------------------------*/
+a, a:link, a:active, a:hover, a:visited { color: #4D96CB; text-decoration: none; }
+
+/* Effects
+-------------------------------*/
+.loading:after {
+	border-bottom: 6px solid rgba(22, 22, 22,.15);
+	border-left: 6px solid rgba(22, 22, 22,.15);
+	border-right: 6px solid rgba(22, 22, 22,.15);
+	border-top: 6px solid rgba(22, 22, 22,.8);
+}
+
+/* Head
+-------------------------------*/
+.head { 
+	background-color: #E7F2F8; 
+	box-shadow: 0 0 1px #307ECC;
+}
+
+.head-btn,
+.head-btn:hover,
+.head-btn:active,
+.head-btn:visited { 
+	background-color: #E7F2F8;
+	border-color: #E7F2F8;
+	color: #555555 !important;
+}
+
+.head-link { 
+	background-color: #E7F2F8;
+	color: #555555 !important;
+}
+
+.head .title,
+.head .title a { color: #555555; }
+
+/* Body
+-------------------------------*/
+.body { background-color: #f9fbfc; }
+
+/* Foot
+-------------------------------*/
+.foot { 
+	background-color: #307ECC;
+	box-shadow: 0 0 1px #E7F2F8;
+}
+
+.foot-nav-item { color: #FFFFFF !important; }
+
+.foot-nav-item.active { color: #FFFFFF !important; }
+
+/* Asides
+-------------------------------*/
+.aside { 
+	background: #FAFAFA; 
+	border-right: 1px solid #A4C6DD;
+}
+
+.aside h1,
+.aside h2,
+.aside h3,
+.aside h4,
+.aside h5,
+.aside h6,
+.aside p {
+	color: #555555;
+}
+
+.aside .btn.pull-left,
+.aside .btn.pull-right {
+	background-color: #FAFAFA;
+	border-color: #FAFAFA;
+	color: #555555;
+}
+
+.aside h2 { border-left: 4px solid #307ECC; }
+
+.aside .nav-list { 
+	margin: 0;
+	border-radius: 0;
+	border-top: 1px solid #307ECC;
+	border-left: 4px solid #307ECC;
+}
+
+/* Nav List
+-------------------------------*/
+.nav-list a { font-weight: 200; }
+.nav-list i  { color: #A4C6DD; }
+
+/* Tabs
+-------------------------------*/
+.tabs {
+	-webkit-box-shadow: 0 0 1px #307ECC;
+	background-color: white;
+	box-shadow: 0 0 1px #307ECC;
+}
+
+.tabs a {
+	color: #555555;
+	border-left: 1px solid #A4C6DD;
+}
+
+.tabs a.active { background-color: #E7F2F8; }
