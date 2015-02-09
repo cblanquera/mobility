@@ -2,9 +2,9 @@ module.exports = {
 	"error": false,
 	"results": {
 		"product_image": [
-			"/boilerplates/ecommerce/images/product-2.jpg",
-			"/boilerplates/ecommerce/images/product-3.jpg",
-			"/boilerplates/ecommerce/images/product-4.jpg"
+			"/mobility/boilerplates/ecommerce/images/product-2.jpg",
+			"/mobility/boilerplates/ecommerce/images/product-3.jpg",
+			"/mobility/boilerplates/ecommerce/images/product-4.jpg"
 		],
 		"product_slug": "samsung-galaxy-note-2-32gb",
 		"product_brand": "Samsung",
@@ -22,9 +22,9 @@ module.exports = {
 		"related": [
 			{
 				"product_image": [
-					"/boilerplates/ecommerce/images/product-3.jpg",
-					"/boilerplates/ecommerce/images/product-2.jpg",
-					"/boilerplates/ecommerce/images/product-4.jpg"
+					"/mobility/boilerplates/ecommerce/images/product-3.jpg",
+					"/mobility/boilerplates/ecommerce/images/product-2.jpg",
+					"/mobility/boilerplates/ecommerce/images/product-4.jpg"
 				],
 				"product_slug": "mydiamond-5-ct-diamond-heart-pendant",
 				"product_brand": "MyDiamond",
@@ -41,9 +41,9 @@ module.exports = {
 			},
 			{
 				"product_image": [
-					"/boilerplates/ecommerce/images/product-4.jpg",
-					"/boilerplates/ecommerce/images/product-2.jpg",
-					"/boilerplates/ecommerce/images/product-3.jpg"
+					"/mobility/boilerplates/ecommerce/images/product-4.jpg",
+					"/mobility/boilerplates/ecommerce/images/product-2.jpg",
+					"/mobility/boilerplates/ecommerce/images/product-3.jpg"
 				],
 				"product_slug": "microsoft-surface-pro",
 				"product_brand": "Microsoft",
@@ -60,9 +60,9 @@ module.exports = {
 			},
 			{
 				"product_image": [
-					"/boilerplates/ecommerce/images/product-5.jpg",
-					"/boilerplates/ecommerce/images/product-2.jpg",
-					"/boilerplates/ecommerce/images/product-3.jpg"
+					"/mobility/boilerplates/ecommerce/images/product-5.jpg",
+					"/mobility/boilerplates/ecommerce/images/product-2.jpg",
+					"/mobility/boilerplates/ecommerce/images/product-3.jpg"
 				],
 				"product_slug": "tomb-raider-for-ps4",
 				"product_brand": "PlayStation",
