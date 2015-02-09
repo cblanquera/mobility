@@ -45,8 +45,8 @@
     <script type="text/javascript">
 	var populate = function(id) {
 		require([
-		'/boilerplates/blog/server/'+id+'.js', 
-		'/boilerplates/blog/templates/row.html'], 
+		'/mobility/boilerplates/blog/server/'+id+'.js', 
+		'/mobility/boilerplates/blog/templates/row.html'], 
 		function(response, template) {
 			jQuery('section.body').removeClass('loading');
 			
@@ -83,7 +83,7 @@
 			//router
 			switch(true) {
 				case target === '/':
-					require('/boilerplates/blog/templates/home.html', function(html) {
+					require('/mobility/boilerplates/blog/templates/home.html', function(html) {
 						jQuery.mobility.swap(html);
 						populate('hot');
 						
@@ -113,8 +113,8 @@
 					break;
 				case target.indexOf('/detail') === 0:
 					require([
-						'/boilerplates/blog/server'+target+'.js', 
-						'/boilerplates/blog/templates/detail.html'], 
+						'/mobility/boilerplates/blog/server'+target+'.js', 
+						'/mobility/boilerplates/blog/templates/detail.html'], 
 					function(response, template) {
 						jQuery.mobility.swap(jQuery(Handlebars.compile(template)(response.results)));
 						jQuery('header a.search-trigger').click(function() {
@@ -148,8 +148,8 @@
 		var id = target.attr('id');
 		
 		require([
-		'/boilerplates/blog/server/' + id + '.js', 
-		'/boilerplates/blog/templates/row.html'], 
+		'/mobility/boilerplates/blog/server/' + id + '.js', 
+		'/mobility/boilerplates/blog/templates/row.html'], 
 		function(response, template) {
 			var row = Handlebars.compile(template)(response.results[(++i) % 4]);
 			
@@ -170,8 +170,8 @@
 			var id = target.attr('id');
 		
 			require([
-			'/boilerplates/blog/server/' + id + '.js', 
-			'/boilerplates/blog/templates/row.html'], 
+			'/mobility/boilerplates/blog/server/' + id + '.js', 
+			'/mobility/boilerplates/blog/templates/row.html'], 
 			function(response, template) {
 				var row = Handlebars.compile(template)(response.results[(++i) % 4]);
 				
