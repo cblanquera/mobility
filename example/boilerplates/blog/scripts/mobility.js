@@ -115,7 +115,6 @@
 	}).on('modal-open-click', function(e) {
 		e.preventDefault();
 		e.originalEvent.stop = true;
-		
 		if($.mobility.busy) {
 			return;
 		}
@@ -238,7 +237,7 @@
 		//so we can unbind it later
 		var paginate = function() {
 			//if we are alreadty busy
-			if($.mobility.busy) {
+			if($.mobility.paginateBusy) {
 				//do nothing
 				return;
 			}
@@ -258,12 +257,12 @@
 			
 			//we are going to attempt to get data now
 			//so we are busy
-			$.mobility.busy = true;
+			$.mobility.paginateBusy = true;
 			
 			//allow API listeners
 			$(window).trigger('mobility-paginate', [target, function(html) {
 				//okay we are not busy anymore
-				$.mobility.busy = false;
+				$.mobility.paginateBusy = false;
 				
 				//if no HTML
 				if(!html) {
@@ -355,7 +354,7 @@
 		//loads the next set
 		var load = function() {
 			//if we are busy
-			if($.mobility.busy) {
+			if($.mobility.refreshBusy) {
 				//do nothing
 				return;
 			}
@@ -364,7 +363,7 @@
 			$('span.message', wizard).html(wizard.attr('data-loading'));
 			
 			//okay lets get busy
-			$.mobility.busy = true;
+			$.mobility.refreshBusy = true;
 			//adjust the wizard height for effect
 			wizard.animate({paddingTop: 0, height: 50}, 'fast', function() {
 				//allow API listener
@@ -396,10 +395,11 @@
 						target.scrollTop(180);
 					}, 5);
 					
-					$.mobility.busy = false;
+					$.mobility.refreshBusy = false;
 				}]);
 			});
 		};
+		
 		//initializes the pagination
 		var initialize = function() {
 			wizard.removeClass('hide');
@@ -672,12 +672,14 @@
 	
 	var notifyTpl = 
 	'<div id="notify-{UID}" class="notify{TYPE}"><a data-do="notify-close" '
-	+ 'data-on="click" href="#notify-{UID}"><i class="fa fa-times"></i></a><span '
-	+ 'class="message">{MESSAGE}</span></div>';
+	+ 'data-on="click" data-target="#notify-{UID}" href="javascript:void(0)">'
+	+ '<i class="fa fa-times"></i></a><span class="message">{MESSAGE}</span></div>';
 	
 	$.extend({
 		mobility: {
 			busy: false,
+			paginateBusy: false,
+			refreshBusy: false,
 			uid: 0,
 			notify: function(message, type) {
 				if($('div.notify').length) {
@@ -704,7 +706,7 @@
 				
 				html = $(html).addClass('sliding-up');
 				
-				$('section.current').append(html);
+				$(document.body).append(html);
 				
 				setTimeout(function() {
 					html
@@ -897,6 +899,24 @@
 			
 			start: function() {
 				$(document.body).doon();		
+			},
+			
+			isMobile: {
+				Android: function() {
+					return /Android/i.test(navigator.userAgent);
+				},
+				BlackBerry: function() {
+					return /BlackBerry/i.test(navigator.userAgent);
+				},
+				iOS: function() {
+					return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+				},
+				Windows: function() {
+					return /IEMobile/i.test(navigator.userAgent);
+				},
+				any: function() {
+					return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());
+				}
 			}
 		}
 	});

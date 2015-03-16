@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <title>Mobility</title>
+    
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" type="text/css" href="styles/awesome.css" />
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="styles/mobility.css" />
+    <link rel="stylesheet" type="text/css" href="styles/mobility-pink.css" />
+    <link rel="stylesheet" type="text/css" href="styles/custom.css" />
+    
+	<script type="text/javascript" src="scripts/jquery.js"></script>
+	<script type="text/javascript" src="scripts/doon.js"></script>
+    <script type="text/javascript" src="scripts/mobility.js"></script>
+    <script type="text/javascript" src="scripts/acquire.js"></script>
+    <script type="text/javascript" src="scripts/handlebars.js"></script>
+</head>
+<body>
+	<section class="screen current"></section>
+    
+    <div id="popover" 
+    	class="popover hide" 
+        data-do="popover-close" 
+        data-on="click" 
+        data-target="#popover">
+        <nav class="nav-list">
+            <a href="/all-stories">All Stories</a>
+            <a href="/must-reads">Must Reads</a>
+            <a href="/social-media">Social Media</a>
+            <a href="/tech">Tech</a>
+            <a href="/business">Business</a>
+            <a href="/entertainment">Entertainment</a>
+            <a href="/us-world">US &amp; World</a>
+            <a href="/water-cooler">Watercooler</a>
+        </nav>
+    </div>
+    
+    <script type="text/javascript">
+	var populate = function(id) {
+		require([
+		'/boilerplates/blog/server/'+id+'.js', 
+		'/boilerplates/blog/templates/row.html'], 
+		function(response, template) {
+			jQuery('section.body').removeClass('loading');
+			
+			for(var row, i = 0; i < response.results.length; i++) {
+				row = jQuery(Handlebars.compile(template)(response.results[i]));
+				jQuery('#' + id + ' div.list').append(row);
+				row.doon();
+			}
+			
+			jQuery('#' + id ).removeClass('hide').scrollTop(180);
+		});
+	};
+	
+	//remote transition are pluggable in this manner
+	var remoteHistory = ['/'];
+	jQuery(window).on('mobility-request', function(e, target, effect) {
+		jQuery(window).one('mobility-swap-complete', function() {
+			var current = jQuery('section.screen.current').addClass('loading');
+			
+			//history
+			switch(effect) {
+				case 'slide-left':
+					remoteHistory.push(target);
+					break;
+				case 'slide-right':
+					if(target !== '/back') {
+						break;
+					}
+					
+					remoteHistory.pop();
+					target = remoteHistory[remoteHistory.length-1];
+			}
+			
+			//router
+			switch(true) {
+				case target === '/':
+					require('/boilerplates/blog/templates/home.html', function(html) {
+						jQuery.mobility.swap(html);
+						populate('hot');
+						
+						jQuery('#home-tabs a').click(function() {
+							if(!$('div.list', $(this).attr('href')).html().trim().length) {
+								populate($(this).attr('href').substr(1));
+							}
+						});
+						
+						jQuery('header a.search-trigger').click(function() {
+							if(jQuery('h1.title input.search-field').hasClass('hide')) {
+								jQuery('header h1.title a').addClass('hide');
+								jQuery('h1.title input.search-field')
+									.removeClass('hide')
+									.animate({ width: '100%' });
+								return;
+							}
+							
+							jQuery('h1.title input.search-field')
+								.addClass('hide')
+								.css({ width: '0%' });
+							
+							jQuery('header h1 a').removeClass('hide');
+						});
+					});
+					
+					break;
+				case target.indexOf('/detail') === 0:
+					require([
+						'/boilerplates/blog/server'+target+'.js', 
+						'/boilerplates/blog/templates/detail.html'], 
+					function(response, template) {
+						jQuery.mobility.swap(jQuery(Handlebars.compile(template)(response.results)));
+						jQuery('header a.search-trigger').click(function() {
+							if(jQuery('h1.title input.search-field').hasClass('hide')) {
+								jQuery('header h1.title a').addClass('hide');
+								jQuery('h1.title input.search-field')
+									.removeClass('hide')
+									.animate({ width: '100%' });
+								return;
+							}
+							
+							jQuery('h1.title input.search-field')
+								.addClass('hide')
+								.css({ width: '0%' });
+							
+							jQuery('header h1 a').removeClass('hide');
+						});
+					});
+					
+					break;
+			}
+			
+		});
+		
+		jQuery.mobility.swap('', effect);
+	});
+	
+	//default refresh pagination
+    var i = 0;
+	jQuery(window).on('mobility-refresh', function(e, target, callback) {
+		var id = target.attr('id');
+		
+		require([
+		'/boilerplates/blog/server/' + id + '.js', 
+		'/boilerplates/blog/templates/row.html'], 
+		function(response, template) {
+			var row = Handlebars.compile(template)(response.results[(++i) % 4]);
+			
+			callback(row);
+		});
+	});
+	
+	
+	//default paginate pagination
+	var j = 0;
+	jQuery(window).on('mobility-paginate', function(e, target, callback) {
+		setTimeout(function() {
+			if(j === 3) {
+				callback();
+				return;
+			}
+			
+			var id = target.attr('id');
+		
+			require([
+			'/boilerplates/blog/server/' + id + '.js', 
+			'/boilerplates/blog/templates/row.html'], 
+			function(response, template) {
+				var row = Handlebars.compile(template)(response.results[(++i) % 4]);
+				
+				for(var rows = [], i = 0; i < response.results.length; i++) {
+					rows.push(Handlebars.compile(template)(response.results[i]));
+				}
+				
+				callback(rows.join(''));
+			});
+			
+			j++;
+		}, 1000);	
+	});
+	
+	//initialize
+	jQuery.mobility.start();
+	
+	jQuery(window).trigger('mobility-request', '/');
+	
+    </script>
+</body>
+</html>

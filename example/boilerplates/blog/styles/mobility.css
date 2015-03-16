@@ -3,7 +3,7 @@
  * CSS, and JS framework built on top of Bootstrap 
  * for developing mobile applications. 
  *
- * @version 0.0.4
+ * @version 0.0.5
  * @author Christian Blanquera <cblanquera@openovate.com>
  * @website https://github.com/cblanquera/mobility
  * @license MIT
@@ -11,7 +11,7 @@
  
 /* General
 -------------------------------*/
-html, body { font-size: 12pt; height: 100%; overflow: hidden; width: 100%; }
+html, body { font-size: 12pt; height: 100%; width: 100%; }
 h1, h2, h3, h4, h5, h6 { font-weight: normal; margin: 0; }
 a, a:active, a:hover, a:visited { color: #000000; text-decoration: none; }
 
@@ -51,6 +51,7 @@ form .btn {
 	-webkit-transform: translate3d(0, 0, 0);
 	  	-ms-transform: translate3d(0, 0, 0);
 		    transform: translate3d(0, 0, 0);
+			
 	height: 100%;
 }
 .sliding-left {
@@ -487,7 +488,7 @@ form .btn {
 
 /* Modal
 -------------------------------*/
-.modal { display: block; overflow: hidden; z-index: 10; }
+.modal { display: block; overflow: hidden; position: absolute; z-index: 10; }
 
 /* Popover
 -------------------------------*/
