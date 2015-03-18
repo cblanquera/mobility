@@ -3,13 +3,28 @@
  * CSS, and JS framework built on top of Bootstrap 
  * for developing mobile applications. 
  *
- * @version 0.0.7
+ * @version 0.0.8
  * @author Christian Blanquera <cblanquera@openovate.com>
  * @website https://github.com/cblanquera/mobility
  * @license MIT
  */
 (function($) {
-	$(window).on('go-back-click', function(e) {
+	$(window).on('go-click', function(e) {
+        e.preventDefault();
+
+        var trigger = getTrigger('go-click', e.target);
+        var target = getTarget(trigger);
+		
+		try {
+            if($(target).length && $(target).html()) {
+                $.mobility.swap($(target).html());
+                e.originalEvent.stop = true;
+				return;
+            }
+        } catch(e) {}
+		
+		$(window).trigger('mobility-request', [target, '']);
+    }).on('go-back-click', function(e) {
         e.preventDefault();
 
         var trigger = getTrigger('go-back-click', e.target);
