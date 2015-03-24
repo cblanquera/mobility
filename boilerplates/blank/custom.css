@@ -1,0 +1,16 @@
+/* Common Classes
+------------------------------*/
+.clear { clear: both; }
+
+.loading { overflow: hidden; }
+.loading:after {
+	-webkit-animation: none;
+	   -moz-animation: none;
+		 -o-animation: none;
+			animation: none;
+	
+	border: 0;
+	border-radius: 0;
+	background-image: url(loading.gif);
+	background-size: 60px 60px;
+}

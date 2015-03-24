@@ -1,0 +1,97 @@
+/* Common Classes
+------------------------------*/
+.clear { clear: both; }
+
+.loading { overflow: hidden; }
+.loading:after {
+	-webkit-animation: none;
+	   -moz-animation: none;
+		 -o-animation: none;
+			animation: none;
+	
+	border: 0;
+	border-radius: 0;
+	background-image: url(loading.gif);
+	background-size: 60px 60px;
+}
+
+/* Head
+-------------------------------*/
+.head { 
+	background-color: #307ECC; 
+	box-shadow: 0 0 1px #F7E8F3;
+}
+
+.head-btn,
+.head-btn:hover,
+.head-btn:active,
+.head-btn:visited { 
+	background-color: #307ECC;
+	border-color: #307ECC;
+	color: #FFFFFF !important;
+	font-size: 22px;
+	margin-top: 2px;
+}
+
+.head-link { 
+	background-color: #307ECC;
+	color: #FFFFFF !important;
+}
+
+.head .title,
+.head .title a { color: #FFFFFF; }
+
+.head .search-field {
+	width: 0%;
+	border-radius: 20px; 
+	display: block;
+	height: 39px;
+	float: right;
+}
+
+/* Foot
+-------------------------------*/
+.foot { background-color: #E7F2F8; }
+
+.foot-nav-item,
+.foot-nav-item:link,
+.foot-nav-item:hover,
+.foot-nav-item:active,
+.foot-nav-item:visited { color: #666666 !important; }
+
+/* List
+-------------------------------*/
+.list { font-size: 15px; }
+.list h3 { color: #232323; font-size: 18px; }
+.list .price { color: #DF0000; font-weight: bold; }
+.list .srp { text-decoration: line-through; font-size: 13px; }
+
+.detail .related h3 { font-size: 18px; }
+
+.detail h3 { color: #232323; font-size: 18px; margin-bottom: 10px; }
+.detail .price { color: #DF0000; font-weight: bold; }
+.detail .srp { text-decoration: line-through; font-size: 13px; }
+
+.detail .description { display: block; }
+.detail .description > * { display: block; width: auto; }
+
+/* Checkout
+-------------------------------*/
+.checkout .progress { 
+	background-color: #4D96CB; 
+	border-radius: 0; 
+	display: block; 
+	height: 10px; 
+}
+
+.checkout .progress-1 { width: 25%; }
+.checkout .progress-2 { width: 50%; }
+.checkout .progress-3 { width: 75%; }
+.checkout .progress-4 { width: 100%; }
+
+.checkout .form-button {
+	color: #FFFFFF;
+	display: block;
+	margin: auto;
+	width: 95%;
+}

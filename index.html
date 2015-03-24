@@ -3,21 +3,29 @@
 <head>
     <meta charset="utf-8" />
     <!-- Sets initial viewport load and disables zooming  -->
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, height=device-height, width=device-width">
     <title>Mobility</title>
     
     <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-    <link rel="stylesheet" type="text/css" href="styles/awesome.css" />
-    <link rel="stylesheet" type="text/css" href="styles/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="styles/mobility.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/font-awesome/awesome.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/open-sans/open-sans.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/mobility/mobility.css" />
     
-	<script type="text/javascript" src="scripts/jquery.js"></script>
-	<script type="text/javascript" src="scripts/doon.js"></script>
-    <script type="text/javascript" src="scripts/mobility.js"></script>
-    <script type="text/javascript" src="scripts/acquire.js"></script>
+    <!--<script type="text/javascript" src="cordova.js"></script>-->
+	<script type="text/javascript" src="vendor/jquery/jquery.js"></script>
+    <script type="text/javascript" src="vendor/classified/classified.js"></script>
+	<script type="text/javascript" src="vendor/doon/doon.js"></script>
+	<script type="text/javascript" src="vendor/time/time.js"></script>
+    <script type="text/javascript" src="vendor/mobility/mobility.js"></script>
+    <script type="text/javascript" src="vendor/acquire/acquire.js"></script>
+    <script type="text/javascript" src="vendor/handlebars/handlebars.js"></script>
+	<script type="text/javascript" src="vendor/chops/chops.js"></script>
+    <script type="text/javascript" src="vendor/cropper/cropper.js"></script>
+    <script type="text/javascript" src="vendor/password/password.js"></script>
 </head>
 <body>
 	<section class="screen current"></section>
@@ -139,7 +147,7 @@
     </div>
     
     <aside id="aside-left" class="aside aside-left">
-    	<a class="btn btn-default pull-right" data-do="aside-left" data-on="click" href="#aside-left"><i class="fa fa-chevron-left"></i></a>
+    	<a class="btn btn-default pull-right" data-do="aside" data-on="click" href="#aside-left"><i class="fa fa-chevron-left"></i></a>
         <h2 class="pad">Mobility</h2>
         <nav class="nav-list">
             <a data-do="go-forward" data-on="click" href="#basics">Basics <i class="fa fa-chevron-right"></i></a>
@@ -157,7 +165,7 @@
     
     <script id="home" type="text/html">
         <header class="head">
-            <a class="head-btn btn btn-default pull-left" data-do="aside-left" data-on="click" href="#aside-left"><i class="fa fa-bars"></i></a>
+            <a class="head-btn btn btn-default pull-left" data-do="aside" data-on="click" href="#aside-left"><i class="fa fa-bars"></i></a>
             <a class="head-btn btn btn-default pull-right" data-do="modal-open" data-on="click" href="#modal">Open</a>
             <h1 class="title">
                 <a data-do="popover-open" data-on="click" href="#popover">Demo <i class="fa fa-caret-down"></i></a>
@@ -178,10 +186,16 @@
             <nav class="nav-list">
                 <a href="https://github.com/cblanquera/mobility/archive/master.tar.gz">Download <i class="fa fa-external-link"></i></a>
                 <a href="https://github.com/cblanquera/mobility">Github <i class="fa fa-external-link"></i></a>
-                <a href="http://cblanquera.github.io/mobility/boilerplates/ecommerce/">E-Commerce Example <i class="fa fa-external-link"></i></a>
-                <a href="http://cblanquera.github.io/mobility/boilerplates/blog/">Blog Example <i class="fa fa-external-link"></i></a>
             </nav>
             
+			
+            <h4 class="pad upper">Boilerplates</h4>
+			
+            <nav class="nav-list">
+				<a href="boilerplates/store">Mobile Store <i class="fa fa-chevron-right"></i></a>
+				<a href="boilerplates/blog">Mobile Blog <i class="fa fa-chevron-right"></i></a>
+			</nav>
+			
 			<h4 class="pad upper">Themes</h4>
 			
 			<nav class="themes nav-list">
@@ -431,7 +445,7 @@
 			<h4 class="pad upper">Aside Trigger</h4>
 			
 			<p class="pad">To see the trigger in action just click <strong>
-			<a data-do="aside-left" data-on="click" href="#aside-left">here</a></strong>.</p>
+			<a data-do="aside" data-on="click" href="#aside-left">here</a></strong>.</p>
 			
 			
 			
@@ -1521,6 +1535,9 @@ jQuery(window).on('mobility-paginate', function(e, target, callback) {
 	//initialize
 	jQuery.mobility.start();
 	
+	//config aquire
+	require.config({ templates: { root: 'templates' } });
+	
 	//add header and footer spacing
 	jQuery(window).trigger('mobility-swap-complete', function() {
 		jQuery('section.screen.current').addClass('with-head with-foot');
@@ -1536,7 +1553,7 @@ jQuery(window).on('mobility-paginate', function(e, target, callback) {
 			
 			//remote call yes? lets use acquire!
 			if(target === '/acquire') {
-				require('/mobility/template.html', function(html) {
+				require('templates/sample.html', function(html) {
 					jQuery.mobility.swap(html);
 				});
 				
@@ -1577,13 +1594,13 @@ jQuery(window).on('mobility-paginate', function(e, target, callback) {
 		}, 1000);	
 	});
 	
-	jQuery('nav.themes a').click(function(e) {
+	jQuery(document).on('click', 'nav.themes a', function(e) {
 		e.preventDefault();
 		var color = this.innerHTML.toLowerCase();
 		jQuery('<link />').attr({
 			rel: 'stylesheet', 
 			type: 'text/css',
-			href: 'styles/mobility-'+color+'.css' })
+			href: 'vendor/mobility/mobility-'+color+'.css' })
 		.appendTo('head');
 	});
     </script>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, height=device-height, width=device-width">
+    <title>Mobility</title>
+    
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" type="text/css" href="vendor/font-awesome/awesome.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/open-sans/open-sans.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/mobility/mobility.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/mobility/mobility-blue.css" />
+    <link rel="stylesheet" type="text/css" href="custom.css" />
+    
+    <!--<script type="text/javascript" src="cordova.js"></script>-->
+	<script type="text/javascript" src="vendor/jquery/jquery.js"></script>
+    <script type="text/javascript" src="vendor/classified/classified.js"></script>
+	<script type="text/javascript" src="vendor/doon/doon.js"></script>
+	<script type="text/javascript" src="vendor/time/time.js"></script>
+    <script type="text/javascript" src="vendor/mobility/mobility.js"></script>
+    <script type="text/javascript" src="vendor/acquire/acquire.js"></script>
+    <script type="text/javascript" src="vendor/handlebars/handlebars.js"></script>
+	<script type="text/javascript" src="vendor/chops/chops.js"></script>
+    <script type="text/javascript" src="vendor/cropper/cropper.js"></script>
+    <script type="text/javascript" src="vendor/password/password.js"></script>
+    <script type="text/javascript" src="custom.js"></script>
+</head>
+<body>
+	<section class="screen current"></section>
+    
+    <footer class="foot">
+        <nav class="foot-nav" data-do="foot-nav">
+        <a 
+            class="foot-nav-item" 
+            data-do="go-previous" 
+            data-on="click" 
+            href="/">
+            <i class="foot-nav-icon fa fa-home"></i>
+            <span class="foot-nav-label">Home</span>
+        </a>
+        <a 
+            class="foot-nav-item" 
+            data-do="go-previous" 
+            data-on="click" 
+            href="/">
+            <i class="foot-nav-icon fa fa-star"></i>
+            <span class="foot-nav-label">Products</span>
+        </a>
+        <a 
+            class="foot-nav-item" 
+            data-do="modal-open" 
+            data-on="click" 
+            href="#settings">
+            <i class="foot-nav-icon fa fa-cog"></i>
+            <span class="foot-nav-label">Settings</span>
+        </a>
+        </nav>
+    </footer>
+</body>
+</html>

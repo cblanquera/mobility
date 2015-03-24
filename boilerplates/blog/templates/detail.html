@@ -25,11 +25,11 @@
 
 <section class="body with-head detail">
 	<div class="post">
-        <div class="photo"><img width="100%" src="{{image}}" /></div>
+        <div class="photo"><img width="100%" src="{{cdn}}{{image}}" /></div>
         <div class="pad">
         	<em class="published text-muted">{{published}}</em>
             <em class="category text-muted">{{category}}</em>
-            <h3><a data-do="go-forward" data-on="click" href="/mobility/boilerplates/blog/detail/{{slug}}">{{title}}</a></h3>
+            <h3><a data-do="go-forward" data-on="click" href="/boilerplates/blog/detail/{{slug}}">{{title}}</a></h3>
         </div>
         <div class="focus shares"><span><strong>{{shares}}</strong> SHARES</span></div>
         
@@ -42,7 +42,7 @@
             
     {{#each comments}}
     <div class="focus comment">
-        <div class="photo"><img src="{{avatar}}" /></div>
+        <div class="photo"><img src="{{cdn}}{{avatar}}" /></div>
         <div class="message">
             {{{detail}}}
             <em class="published text-muted">{{published}}</em>

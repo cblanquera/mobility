@@ -1,0 +1,13 @@
+<div class="row" data-do="go-forward" data-on="click" data-target="/detail/{{product_slug}}">
+    <div class="col-xs-3 middle"><img src="{{cdn}}{{product_image.[0]}}" /></div>
+    <div class="col-xs-12">
+        <h3>{{product_title}}</h3>
+        <em class="price text-muted">P{{product_price}}</em>
+        {{#if product_srp}}
+        <em class="srp text-muted">P{{product_srp}}</em>
+        {{/if}}
+    </div>
+    <div class="col-xs-1 middle">
+      <i class="fa fa-chevron-right"></i>
+    </div>
+</div>

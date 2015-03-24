@@ -3,7 +3,7 @@ module.exports = {
 	"results": {
 		"slug": "budi-the-orangutan",
 		"title": "Budi the orangutan is recovering after almost a year of neglect",
-		"image": "/mobility/boilerplates/blog/images/africa-139343_640.jpg",
+		"image": "/images/africa-139343_640.jpg",
 		"category": "watercooler",
 		"author": "Tricia Gibride",
 		"published": "2 days ago",
@@ -13,7 +13,7 @@ module.exports = {
 			{
 				"slug": "a-knife-in-an-enchilada",
 				"title": "A knife in an enchilada: The oddest thing the TSA seized in 2014",
-				"image": "/mobility/boilerplates/blog/images/american-football-63109_640.jpg",
+				"image": "/images/american-football-63109_640.jpg",
 				"category": "watercooler",
 				"published": "3 days ago",
 				"shares": "814"
@@ -21,7 +21,7 @@ module.exports = {
 			{
 				"slug": "leatherman-to-debut",
 				"title": "Leatherman to debut a wearable multi-tool this summer",
-				"image": "/mobility/boilerplates/blog/images/lacrosse-165576_640.jpg",
+				"image": "/images/lacrosse-165576_640.jpg",
 				"category": "lifestyle",
 				"published": "2 days ago",
 				"shares": "1235"
@@ -29,7 +29,7 @@ module.exports = {
 			{
 				"slug": "elon-musk-is-peak",
 				"title": "Elon Musk is peak Elon Musk in 'Simpsons' sneak peek",
-				"image": "/mobility/boilerplates/blog/images/mountain-91385_640.jpg",
+				"image": "/images/mountain-91385_640.jpg",
 				"category": "entertainment",
 				"published": "1 hour ago",
 				"shares": "1335"
@@ -39,19 +39,19 @@ module.exports = {
 			{
 				"author": "Stacy",
 				"published": "2 days ago",
-				"avatar": "/mobility/boilerplates/blog/images/avatar-1.jpg",
+				"avatar": "/images/avatar-1.jpg",
 				"detail": "<p>This is great news! Sharing to my friends</p>"
 			},
 			{
 				"author": "Eva For",
 				"published": "3 days ago",
-				"avatar": "/mobility/boilerplates/blog/images/avatar-2.jpg",
+				"avatar": "/images/avatar-2.jpg",
 				"detail": "<p>Love this article. Keep up the good work. I saw this somewhere else, but this one is a better explanation.</p>"
 			},
 			{
 				"author": "George Kuman",
 				"published": "2 days ago",
-				"avatar": "/mobility/boilerplates/blog/images/avatar-3.jpg",
+				"avatar": "/images/avatar-3.jpg",
 				"detail": "<p>I'm a little bit dissapointed, but hey i guess this is how the world works. Fine article none the less.</p>"
 			}
 		]
