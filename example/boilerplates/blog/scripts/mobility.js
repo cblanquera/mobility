@@ -3,7 +3,7 @@
  * CSS, and JS framework built on top of Bootstrap 
  * for developing mobile applications. 
  *
- * @version 0.0.8
+ * @version 1.0.1
  * @author Christian Blanquera <cblanquera@openovate.com>
  * @website https://github.com/cblanquera/mobility
  * @license MIT
@@ -118,15 +118,7 @@
 		e.originalEvent.stop = true;
 		
 		var trigger = getTrigger('tab-switch-click', e.target);
-		var target = $(getTarget(trigger));
-		
-		trigger.siblings().each(function() {
-			var target = $(this).removeClass('active').attr('href');
-			$(target).addClass('hide');
-		});
-		
-		trigger.addClass('active'); 
-		target.removeClass('hide');
+		$.mobility.tabSwitch(trigger);
 	}).on('modal-open-click', function(e) {
 		e.preventDefault();
 		e.originalEvent.stop = true;
@@ -134,58 +126,18 @@
 			return;
 		}
 		
-		$.mobility.busy = true;
-		
 		var trigger = getTrigger('modal-open-click', e.target);
 		var target = $(getTarget(trigger));
 		
-		var slideEnd = function () {
-			target
-				.unbind('webkitTransitionEnd', slideEnd)
-				.removeClass('sliding');
-			
-			$.mobility.busy = false;
-		};
-		
-		target
-			.addClass('sliding-down')
-			.removeClass('hide');
-		
-		target[0].offsetWidth; // force reflow
-		
-		target
-			.removeClass('sliding-down')
-			.on('webkitTransitionEnd', slideEnd)
-			.addClass('sliding');
+		$.mobility.modalOpen(target);
 	}).on('modal-close-click', function(e) {
 		e.preventDefault();
 		e.originalEvent.stop = true;
 		
-		if($.mobility.busy) {
-			return;
-		}
-		
-		$.mobility.busy = true;
-		
 		var trigger = getTrigger('modal-close-click', e.target);
 		var target = $(getTarget(trigger));
 		
-		var slideEnd = function () {
-			target
-				.unbind('webkitTransitionEnd', slideEnd)
-				.removeClass('sliding')
-				.removeClass('sliding-down')
-				.addClass('hide');
-			
-			$.mobility.busy = false;
-		};
-		
-		target[0].offsetWidth; // force reflow
-		
-		target
-			.on('webkitTransitionEnd', slideEnd)
-			.addClass('sliding')
-			.addClass('sliding-down');
+		$.mobility.modalClose(target);
 	}).on('popover-open-click', function(e) {
 		e.preventDefault();
 		e.originalEvent.stop = true;
@@ -193,7 +145,7 @@
 		var trigger = getTrigger('popover-open-click', e.target);
 		var target = $(getTarget(trigger));
 		
-		target.removeClass('hide');
+		$.mobility.popoverOpen(target);
 	}).on('popover-close-click', function(e) {
 		e.preventDefault();
 		e.originalEvent.stop = true;
@@ -201,7 +153,7 @@
 		var trigger = getTrigger('popover-close-click', e.target);
 		var target = $(getTarget(trigger));
 		
-		target.addClass('hide');
+		$.mobility.popoverClose(target);
 	}).on('notify-open-click', function(e) {
 		e.preventDefault();
 		
@@ -238,7 +190,7 @@
 		target[0].offsetWidth; // force reflow
 		
 		target
-			.on('webkitTransitionEnd', slideEnd)
+			.one('webkitTransitionEnd', slideEnd)
 			.addClass('sliding')
 			.addClass('sliding-up');
 	}).on('paginate-init', function(e, message) {
@@ -480,159 +432,24 @@
 		}
 		
 		initialize();
-	}).on('aside-left-init', function(e, container) {
-		if(!$(container).hasClass('aside-left')) {
-			return;
-		}
-		
-		container = $(container).parent().on('webkitTransitionEnd', function() {
-			$.mobility.busy = false;
-			container.removeClass('aside-return');
-		});
-		
-		var initialize = function() {
-			$.mobility.swipe(container, 20);
-			
-			container.on('swipe-right', function(e) {
-				if(container.hasClass('aside-slide-left')
-				|| container.hasClass('aside-slide-right')
-				|| container.hasClass('aside-return')
-				|| $.mobility.busy) {
-					return;
-				}
-				
-				$.mobility.busy = true;
-				
-				container.addClass('aside-slide-right');
-				
-				return;
-			}).on('swipe-left', function(e) {
-				if(!container.hasClass('aside-slide-right')
-				|| container.hasClass('aside-return')
-				|| $.mobility.busy) {
-					return;
-				}
-				
-				$.mobility.busy = true;
-				
-				container
-					.removeClass('aside-slide-right')
-					.addClass('aside-return');
-				
-				return;
-			});
-		};
-		
-		if($.mobility.busy) {
-			$(window).on('mobility-swap-complete', initialize);
-			return;
-		}
-		
-		initialize();
-	}).on('aside-right-init', function(e, container) {
-		if(!$(container).hasClass('aside-right')) {
-			return;
-		}
-		
-		container = $(container).parent().on('webkitTransitionEnd', function() {
-			$.mobility.busy = false;
-			container.removeClass('aside-return');
-		});
-		
-		var initialize = function() {
-			$.mobility.swipe(container, 20);
-			
-			container.on('swipe-left', function(e) {
-				if(container.hasClass('aside-slide-left')
-				|| container.hasClass('aside-slide-right')
-				|| container.hasClass('aside-return')
-				|| $.mobility.busy) {
-					return;
-				}
-				
-				$.mobility.busy = true;
-				container.addClass('aside-slide-left');
-				
-				return;
-			}).on('swipe-right', function(e) {
-				if(!container.hasClass('aside-slide-left')
-				|| container.hasClass('aside-return')
-				|| $.mobility.busy) {
-					return;
-				}
-				
-				$.mobility.busy = true;
-				
-				container
-					.removeClass('aside-slide-left')
-					.addClass('aside-return');
-				
-				return;
-			});
-		};
-		
-		if($.mobility.busy) {
-			$(window).on('mobility-swap-complete', initialize);
-			return;
-		}
-		
-		initialize();
-	}).on('aside-left-click', function(e, container) {
+	}).on('aside-click', function(e, container) {
 		e.preventDefault();
 		e.originalEvent.stop = true;
 		
-		var trigger = getTrigger('aside-left-click', e.target);
+		var trigger = getTrigger('aside-click', e.target);
         var target = getTarget(trigger);
 		
-		try {
-            if($(target).length) {
-				if($(target).parent().hasClass('aside-slide-right')) {
-					$(target).parent().one('webkitTransitionEnd', function() {
-						$(target).parent().removeClass('aside-return');
-					});
-					
-					$(target).parent()
-						.removeClass('aside-slide-right')
-						.addClass('aside-return');
-					
-					return;
-				}
-				
-				$(target).parent()
-					.removeClass('aside-return')
-					.addClass('aside-slide-right');
-				
-				return;
-            }
-        } catch(e) {}
-	}).on('aside-right-click', function(e, container) {
-		e.preventDefault();
-		e.originalEvent.stop = true;
+		if(!$(target).length) {
+			return;
+		}
 		
-		var trigger = getTrigger('aside-right-click', e.target);
-        var target = getTarget(trigger);
+		if($(target).parent().hasClass('aside-slide-right')
+		|| $(target).parent().hasClass('aside-slide-left')) {
+			$.mobility.asideClose(target);
+			return;
+		}
 		
-		try {
-            if($(target).length) {
-				if($(target).parent().hasClass('aside-slide-left')) {
-					$(target).parent().one('webkitTransitionEnd', function() {
-						$(target).parent().removeClass('aside-return');
-					});
-					
-					$(target).parent()
-						.removeClass('aside-slide-left')
-						.addClass('aside-return');
-					
-					return;
-				}
-				
-				$(target).parent()
-					.removeClass('aside-return')
-					.addClass('aside-slide-left');
-				
-				return;
-            }
-        } catch(e) {}
+		$.mobility.asideOpen(target);
 	});
 	
 	var getTrigger = function(event, target) {
@@ -696,6 +513,7 @@
 			paginateBusy: false,
 			refreshBusy: false,
 			uid: 0,
+			
 			notify: function(message, type) {
 				if($('div.notify').length) {
 					$('div.notify > a').click();
@@ -865,6 +683,110 @@
 						break;
 						
 				}
+			},
+			
+			modalOpen: function(selector) {
+				selector = $(selector);
+				
+				var slideEnd = function () {
+					selector
+						.unbind('webkitTransitionEnd', slideEnd)
+						.removeClass('sliding');
+				};
+				
+				selector
+					.addClass('sliding-down')
+					.removeClass('hide');
+				
+				selector[0].offsetWidth; // force reflow
+				
+				selector
+					.removeClass('sliding-down')
+					.on('webkitTransitionEnd', slideEnd)
+					.addClass('sliding');
+				
+				return this;
+			},
+			
+			modalClose: function(selector) {
+				selector = $(selector);
+				
+				var slideEnd = function () {
+					selector
+						.unbind('webkitTransitionEnd', slideEnd)
+						.removeClass('sliding')
+						.removeClass('sliding-down')
+						.addClass('hide');
+				};
+				
+				selector[0].offsetWidth; // force reflow
+				
+				selector
+					.on('webkitTransitionEnd', slideEnd)
+					.addClass('sliding')
+					.addClass('sliding-down');
+				
+				return this;
+			},
+			
+			popoverOpen: function(selector) {
+				$(selector).removeClass('hide');
+				return this;
+			},
+			
+			popoverClose: function(selector) {
+				$(selector).addClass('hide');
+				return this;
+			},
+			
+			asideOpen: function(selector) {
+				selector = $(selector);
+				if(selector.hasClass('aside-right')) {
+					selector.parent()
+						.removeClass('aside-return')
+						.removeClass('aside-slide-right')
+						.addClass('aside-slide-left');
+					
+					return this;
+				}
+							
+				selector.parent()
+					.removeClass('aside-return')
+					.removeClass('aside-slide-left')
+					.addClass('aside-slide-right');
+				
+				return this;
+			},
+			
+			asideClose: function(selector) {
+				selector = $(selector);
+				
+				selector.parent().one('webkitTransitionEnd', function() {
+					selector.parent().removeClass('aside-return');
+				});
+				
+				selector.parent()
+					.removeClass('aside-slide-right')
+					.removeClass('aside-slide-left')
+					.addClass('aside-return');
+					
+				return this;
+			},
+			
+			tabSwitch: function(selector) {
+				var target = $(getTarget(selector));
+				
+				selector = $(selector);
+				
+				selector.siblings().each(function() {
+					var target = $(this).removeClass('active').attr('href');
+					$(target).addClass('hide');
+				});
+				
+				selector.addClass('active'); 
+				target.removeClass('hide');
+				
+				return this;
 			},
 			
 			swipe: function(container, range) {
