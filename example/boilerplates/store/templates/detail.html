@@ -1,0 +1,241 @@
+<header class="head">
+    <a 
+        class="head-btn btn btn-default pull-left" 
+        data-do="go-back" 
+        data-on="click" 
+        href="/back">
+            <i class="fa fa-chevron-left"></i>
+    </a>
+    <a 
+        class="head-btn btn btn-default pull-right search-trigger" 
+        href="javascript:void(0)">
+            <i class="fa fa-search"></i>
+    </a>
+    <h1 class="title">
+    	<input class="search-field hide" />
+        <span>{{product_title}}</span>
+    </h1>
+</header>
+
+<section class="body with-head with-foot detail">
+	<div class="post">
+        <div class="hero" data-do="hero">
+            <div class="frame">
+            	{{#each product_image}}
+                <img src="{{cdn}}{{this}}" />
+                {{/each}}
+            </div>
+        </div>
+        <div class="pad">
+        	<h3><a data-do="go-forward" data-on="click" href="/detail/{{product_slug}}">{{product_title}}</a></h3>
+            <em class="price text-muted">P{{product_price}}</em>
+            {{#if product_srp}}
+            <em class="srp text-muted">P{{product_srp}}</em>
+            {{/if}}
+        </div>
+        
+        <nav class="nav-list">
+            <a data-do="go-forward" data-on="click" href="#checkout-1">
+            	Buy It <i class="fa fa-chevron-right"></i>
+            </a>
+            <span>Share It <i class="fa fa-chevron-right"></i></span>
+            <span>Add to Wishlist <i class="fa fa-chevron-right"></i></span>
+        </nav>
+        
+        <h4 class="upper pad">Details</h4>
+        
+        <div class="focus description">
+        {{{product_detail}}}
+        </div>
+    </div>
+    
+    <h4 class="upper pad">Related</h4>
+    
+    <div class="list focus focus-group">
+    {{#each related}}
+    <div class="row">
+        <div class="col-xs-3 middle"><img src="{{cdn}}{{product_image.[0]}}" /></div>
+        <div class="col-xs-12">
+            <h3><a data-do="go-forward" data-on="click" href="/detail/{{product_slug}}">{{product_title}}</a></h3>
+            <em class="price text-muted">P{{product_price}}</em>
+            {{#if product_srp}}
+            <em class="srp text-muted">P{{product_srp}}</em>
+            {{/if}}
+        </div>
+        <div class="col-xs-1 middle">
+          <i class="fa fa-chevron-right"></i>
+        </div>
+    </div>
+    {{/each}}
+</section>
+
+<script id="checkout-1" type="text/html">
+    <header class="head">
+        <a 
+			class="head-btn btn btn-default pull-left" 
+			data-do="go-back" 
+			data-on="click" 
+			href="/detail/{{product_slug}}">
+				<i class="fa fa-chevron-left"></i>
+		</a>
+        <h1 class="title">Checkout</h1>
+    </header>
+
+    <section class="body with-head with-foot checkout">
+    	<div class="progress progress-1"></div>
+    	<h4 class="pad upper">Billing Information</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="focus">
+                    <label>Full Name</label>
+                    <input name="name" type="text" class="form-control" />
+                </div>
+                <div class="focus">
+                    <label>Address</label>
+                    <input name="address" type="text" class="form-control" />
+                </div>
+                <div class="focus">
+                    <label>City</label>
+                    <input name="city" type="text" class="form-control" />
+                </div>
+                <div class="focus">
+                    <label>State</label>
+                    <input name="state" type="text" class="form-control" />
+                </div>
+                <div class="focus">
+                    <label>Country</label>
+                    <select name="country"><option>Philippines</option></select>
+                </div>
+                <div class="focus">
+                    <label>Postal</label>
+                    <input name="postal" type="text" class="form-control" />
+                </div>
+                
+                <a 
+					class="btn btn-primary form-button" 
+					data-do="go-forward" 
+					data-on="click" 
+					href="#checkout-2">Next</a>
+            </div>
+        </div>
+    </section>
+	<div id="checkout-2" class="hide">
+		<header class="head">
+			<a 
+				class="head-btn btn btn-default pull-left" 
+				data-do="go-back" 
+				data-on="click" 
+				href="/detail/{{product_slug}}">
+					<i class="fa fa-chevron-left"></i>
+			</a>
+			<h1 class="title">Checkout</h1>
+		</header>
+	
+		<section class="body with-head with-foot checkout">
+			<div class="progress progress-2"></div>
+			<h4 class="pad upper">Shipping Information</h4>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="focus">
+						<label>Full Name</label>
+						<input name="name" type="text" class="form-control" />
+					</div>
+					<div class="focus">
+						<label>Address</label>
+						<input name="address" type="text" class="form-control" />
+					</div>
+					<div class="focus">
+						<label>City</label>
+						<input name="city" type="text" class="form-control" />
+					</div>
+					<div class="focus">
+						<label>State</label>
+						<input name="state" type="text" class="form-control" />
+					</div>
+					<div class="focus">
+						<label>Country</label>
+						<select name="country"><option>Philippines</option></select>
+					</div>
+					<div class="focus">
+						<label>Postal</label>
+						<input name="postal" type="text" class="form-control" />
+					</div>
+					
+					<a 
+						class="btn btn-primary form-button" 
+						data-do="go-forward" 
+						data-on="click" 
+						href="#checkout-3">Next</a>
+				</div>
+			</div>
+		</section>
+		
+		<div id="checkout-3" class="hide">
+			<header class="head">
+				<a 
+					class="head-btn btn btn-default pull-left" 
+					data-do="go-back" 
+					data-on="click" 
+					href="/detail/{{product_slug}}">
+						<i class="fa fa-chevron-left"></i>
+				</a>
+				<h1 class="title">Checkout</h1>
+			</header>
+		
+			<section class="body with-head with-foot checkout">
+				<div class="progress progress-3"></div>
+				<h4 class="pad upper">Review</h4>
+				
+				<div class="list focus focus-group">
+					<div class="row">
+						<div class="col-xs-3 middle"><img src="{{cdn}}{{product_image.[0]}}" /></div>
+						<div class="col-xs-12">
+							<h3>{{product_title}}</h3>
+							<em class="price text-muted">P{{product_price}}</em>
+							{{#if product_srp}}
+							<em class="srp text-muted">P{{product_srp}}</em>
+							{{/if}}
+						</div>
+					</div>	
+				</div>	
+				
+				<a 
+						class="btn btn-primary form-button" 
+						data-do="go-forward" 
+						data-on="click" 
+						href="#checkout-4">Checkout</a>		
+			</section>
+			
+			<div id="checkout-4" class="hide">
+                <header class="head">
+                    <a 
+                        class="head-btn btn btn-default pull-left" 
+                        data-do="go-back" 
+                        data-on="click" 
+                        href="/detail/{{product_slug}}">
+                            <i class="fa fa-chevron-left"></i>
+                    </a>
+                    <h1 class="title">Checkout</h1>
+                </header>
+            
+                <section class="body with-head with-foot checkout">
+                    <div class="progress progress-4"></div>
+                    <h4 class="pad upper">Success</h4>
+                    
+                    <div class="focus">
+                        <p>Your order number is #123456789</p>	
+                    </div>	
+                    
+                    <a 
+                            class="btn btn-primary form-button" 
+                            data-do="go-back" 
+                            data-on="click" 
+                            href="/">Continue Shopping</a>		
+                </section>
+            </div>
+		</div>
+	</div>
+</script>
+
+
+    

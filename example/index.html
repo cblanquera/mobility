@@ -3,21 +3,29 @@
 <head>
     <meta charset="utf-8" />
     <!-- Sets initial viewport load and disables zooming  -->
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, height=device-height, width=device-width">
     <title>Mobility</title>
     
     <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-    <link rel="stylesheet" type="text/css" href="styles/awesome.css" />
-    <link rel="stylesheet" type="text/css" href="styles/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="styles/mobility.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/font-awesome/awesome.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/open-sans/open-sans.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/mobility/mobility.css" />
     
-	<script type="text/javascript" src="scripts/jquery.js"></script>
-	<script type="text/javascript" src="scripts/doon.js"></script>
-    <script type="text/javascript" src="scripts/mobility.js"></script>
-    <script type="text/javascript" src="scripts/acquire.js"></script>
+    <!--<script type="text/javascript" src="cordova.js"></script>-->
+	<script type="text/javascript" src="vendor/jquery/jquery.js"></script>
+    <script type="text/javascript" src="vendor/classified/classified.js"></script>
+	<script type="text/javascript" src="vendor/doon/doon.js"></script>
+	<script type="text/javascript" src="vendor/time/time.js"></script>
+    <script type="text/javascript" src="vendor/mobility/mobility.js"></script>
+    <script type="text/javascript" src="vendor/acquire/acquire.js"></script>
+    <script type="text/javascript" src="vendor/handlebars/handlebars.js"></script>
+	<script type="text/javascript" src="vendor/chops/chops.js"></script>
+    <script type="text/javascript" src="vendor/cropper/cropper.js"></script>
+    <script type="text/javascript" src="vendor/password/password.js"></script>
 </head>
 <body>
 	<section class="screen current"></section>
@@ -1519,6 +1527,9 @@ jQuery(window).on('mobility-paginate', function(e, target, callback) {
 	//initialize
 	jQuery.mobility.start();
 	
+	//config aquire
+	require.config({ templates: { root: 'templates' } });
+	
 	//add header and footer spacing
 	jQuery(window).trigger('mobility-swap-complete', function() {
 		jQuery('section.screen.current').addClass('with-head with-foot');
@@ -1534,7 +1545,7 @@ jQuery(window).on('mobility-paginate', function(e, target, callback) {
 			
 			//remote call yes? lets use acquire!
 			if(target === '/acquire') {
-				require('/mobility/template.html', function(html) {
+				require('templates/sample.html', function(html) {
 					jQuery.mobility.swap(html);
 				});
 				
@@ -1575,13 +1586,13 @@ jQuery(window).on('mobility-paginate', function(e, target, callback) {
 		}, 1000);	
 	});
 	
-	jQuery('nav.themes a').click(function(e) {
+	jQuery(document).on('click', 'nav.themes a', function(e) {
 		e.preventDefault();
 		var color = this.innerHTML.toLowerCase();
 		jQuery('<link />').attr({
 			rel: 'stylesheet', 
 			type: 'text/css',
-			href: 'styles/mobility-'+color+'.css' })
+			href: 'vendor/mobility/mobility-'+color+'.css' })
 		.appendTo('head');
 	});
     </script>

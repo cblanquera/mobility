@@ -221,6 +221,11 @@ jQuery(function() {
 		return data.toLowerCase();
 	};
 	
+	//create cdn helpers
+	Handlebars.registerHelper('cdn', function(options) {
+		return $.client.cdn; 
+	});
+	
 	//create session helpers
 	Handlebars.registerHelper('loggedin', function(options) {
 		if(window.localStorage.hasOwnProperty('me')) {

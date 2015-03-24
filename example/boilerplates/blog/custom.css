@@ -1,0 +1,98 @@
+/* Common Classes
+------------------------------*/
+.clear { clear: both; }
+
+.loading { overflow: hidden; }
+.loading:after {
+	-webkit-animation: none;
+	   -moz-animation: none;
+		 -o-animation: none;
+			animation: none;
+	
+	border: 0;
+	border-radius: 0;
+	background-image: url(loading.gif);
+	background-size: 60px 60px;
+}
+
+/* Head
+-------------------------------*/
+.head { 
+	background-color: #CC30A5; 
+	box-shadow: 0 0 1px #F7E8F3;
+}
+
+.head-btn,
+.head-btn:hover,
+.head-btn:active,
+.head-btn:visited { 
+	background-color: #CC30A5;
+	border-color: #CC30A5;
+	color: #FFFFFF !important;
+	font-size: 22px;
+	margin-top: 2px;
+}
+
+.head-link { 
+	background-color: #CC30A5;
+	color: #FFFFFF !important;
+}
+
+.head .title,
+.head .title a { color: #FFFFFF; }
+
+.head .search-field {
+	width: 0%;
+	border-radius: 20px; 
+	display: block;
+	height: 39px;
+	float: right;
+}
+
+/* Tabs
+-------------------------------*/
+.tabs {
+	-webkit-box-shadow: 0 0 1px #CC30A5;
+	background-color: white;
+	box-shadow: 0 0 1px #CC30A5;
+}
+
+.tabs a {
+	color: #CC30A5;
+	border-left: 1px solid #DDAAD1;
+}
+
+.tabs a.active { background-color: #CC30A5; color: #FFFFFF; }
+
+/* Posts
+-------------------------------*/
+.posts  {
+	bottom: 0;
+	overflow: auto;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 50px;
+}
+
+/* Post
+-------------------------------*/
+.post { margin-bottom: 10px; }
+.post .photo { max-height: 150px; overflow: hidden; }
+.post .category { font-size: 14px; text-transform: uppercase; }
+.post h3 { line-height: 32px; margin: 10px 0; }
+.detail .published { float: right; }
+.post .scaled-image { margin: 0 auto 10px; }
+.post .shares { font-size: 14px; }
+
+.detail .shares strong { color: #CC30A5; }
+
+.detail .related h3 { font-size: 18px; }
+
+.detail .comment { margin-bottom: -1px; }
+
+.detail .comment .photo { float: left; display: block; width: 60px; }
+.detail .comment .message { padding-left: 55px; display: block; width: auto; padding-left: 60px; }
+.detail .comment .published { float: none; font-size: 13px; margin-top: -5px; display: block; }
+
+.detail .comment-button {  margin-top: -10px; width: 100%; }
