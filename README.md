@@ -85,7 +85,7 @@ I never wanted to write this actually. I tried using ChocolateChip UI, not plugg
 
 Hints and Tips
 ========
- - Start off with the [Mobility Boilerplate](http://github.io/cblanquera/mobility/example/boilerplates/blank)
+ - Start off with the [Mobility Boilerplate](http://github.com/cblanquera/mobility/example/boilerplates/blank)
  - Do not use `position: fixed`. Instead use `position: absolute`
  - Do not `display: none` on `<input type="file" />`
  - Mobility out of the box color themes use the same hue/saturation/brightness combinations given the starting color (It wasn't randomly chosen).
