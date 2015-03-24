@@ -33,12 +33,12 @@ Mobility uses:
  - jQuery
  - Font Awesome 4
  - Open Sans
- - [Do On](http://github.io/cblanquera/doon)
+ - [Do On](http://github.com/cblanquera/doon)
  
 Mobility works well with:
  - Handlebars
- - [Acquire](http://github.io/cblanquera/acquire)
- - [CHOPS](http://github.io/cblanquera/chops)
+ - [Acquire](http://github.com/cblanquera/acquire)
+ - [CHOPS](http://github.com/cblanquera/chops)
 
 Mobility plays nice with:
  - Backbone
